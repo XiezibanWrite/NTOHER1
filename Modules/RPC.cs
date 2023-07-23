@@ -91,6 +91,7 @@ enum CustomRPC
     SyncKBNameNotify,
     Vulture,
     MeetingKill,
+    SetRememberLimit,
 }
 public enum Sounds
 {
@@ -633,6 +634,9 @@ internal static class RPC
         {
             case CustomRoles.BountyHunter:
                 BountyHunter.Add(targetId);
+                break;
+            case CustomRoles.Amnesiac:
+                Amnesiac.Add(targetId);
                 break;
             case CustomRoles.SerialKiller:
                 SerialKiller.Add(targetId);

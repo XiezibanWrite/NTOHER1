@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "<size=200%>修了114514年BUG从10变到20我真的佩服我自己！</size>";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "1.1.1";
+    public const string PluginVersion = "1.1.2.1";
     public const int PluginCreate = 5;
 
     public static readonly bool ShowQQButton = true;
@@ -314,6 +314,7 @@ public class Main : BasePlugin
                 {CustomRoles.Totocalcio, "#ff9409"},
                 {CustomRoles.Succubus, "#ff00ff"},
                 {CustomRoles.Lawyer, "#949e52"},
+                {CustomRoles.Amnesiac, "#7FBFFF"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -508,6 +509,7 @@ public enum CustomRoles
     Succubus,
     Lawyer,
     Vulture,
+    Amnesiac,
 
     //SoloKombat
     KB_Normal,
@@ -541,6 +543,11 @@ public enum CustomRoles
     Bait,
     Trapper,
     Autopsy,
+    Pursuer,
+    Maverick,
+    Refugee,
+    Sidekick,
+    Soulless,
 }
 //WinData
 public enum CustomWinner

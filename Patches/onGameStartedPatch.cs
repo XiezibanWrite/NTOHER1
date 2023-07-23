@@ -161,6 +161,7 @@ internal class ChangeRoleSettings
             TimeThief.Init();
             Mare.Init();
             Witch.Init();
+            Amnesiac.Init();
             SabotageMaster.Init();
             Executioner.Init();
             Jackal.Init();
@@ -406,6 +407,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Sniper:
                         Sniper.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Amnesiac:
+                        Amnesiac.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Mare:
                         Mare.Add(pc.PlayerId);

@@ -144,6 +144,7 @@
 "Lawyer","律师","Lawyer","Адвокат","",""
 "Vulture","秃鹫","Vulture","Стервятник","",""
 "Sidekick","爪牙","Sidekick","Сюзник","Sidekick","Sidekick"
+"Amnesiac","失忆者","Amnesiac","","失憶者",""
 
 "# 附加职业 / Add-ons"
 "LastImpostor","绝境者","Last Impostor","Последний Предатель","絕境者","绝境者"
@@ -276,6 +277,7 @@
 "OracleInfo","投票给玩家看到他的阵营","Vote a player to see their alignment","Проголосуйте за игрока, чтобы увидеть его роль","",""
 "RetributionistInfo","死后帮助船员","Help the crew after you die","Помогите Членам Экипажа после смерти","",""
 "FarseerInfo","显示其他玩家的身份","Reveal roles of other players","Выявляйте роли других игроков","",""
+"AmnesiacInfo","记住玩家的身份","Remember the role of a player","","記住玩家的身份",""
 
 "# 中立阵营 / Neutral descriptions"
 "ArsonistInfo","乖乖站好！","Douse Everyone and Ignite","Облейте всех игроков, а потом подожгите","燒吧，燒吧，燃燒吧","乖乖站好！"
@@ -440,6 +442,7 @@
 "LawyerInfoLong","(中立阵营):\n游戏开始时律师会被分配到一个目标，并在其昵称旁用菱形「♦」表示。若你目标胜利，则律师一起胜利。请注意：律师死亡后也可以胜利。","(Neutrals):\nLawyer has a target to defend, which will be indicated by a diamond 「♦」 next to their name.\nIf your target wins, you win.\nIf they lose, you lose.","(Злой - Нейтрал):\nУ Адвоката есть цель для защиты, которая будет отмечена ромбом 「♦」 рядом с его никнеймом.\nЕсли ваша цель выиграет, он тоже победит.\nЕсли они проиграют, Адвокат тоже проиграет.","",""
 "VultureInfoLong","(中立阵营):\n秃鹫不会报告尸体\n相反，报告一具尸体会导致你吃掉它，使其失去报告权\n吃够的尸体获胜！","(Neutrals):\nAs the Vulture, you do not report bodies normally.\nInstead, reporting a body causes you to eat it, making it unreportable.\n\nEat enough bodies to win!","(Злой - Нейтрал):\nСтервятник не может репортить тркпы как обычно.\nВместо этого, он поедает труп, после этого ег
 SidekickInfoLong","(中立职业):\n仅剩变节者阵营与船员阵营且变节者阵营人数大于船员人数，变节者阵营获得胜利。爪牙属于变节者阵营。","(Neutrals):\nAs the Sidekick, your job is to help the Jackal kill everyone.\n\nYou and the Jackal win together.","(Атрибут)\nСоюзник должен — помочь Шакалу.\n\nСоюзник и Шакал побеждят вместе, но они также могут достичь своего обычного условия победы.","",""
+"AmnesiacInfoLong","（中立阵营）：作为失忆者，使用玩家的击杀按钮来记住他们的角色。\n如果目标是内鬼，你将成为<b><color=#ff1919>逃亡者</color></b>。\n如果目标是船员，你将成为<b><color=#FFB347>警长</color></b>。\如果目标是被动中立者或未指定的中立杀手，您将成为设置中立身份。\n如果目标是少数人中的中立杀手，你就会成为他们的身份","(Neutrals):\nAs the Amnesiac, use your kill button on a player to remember their role.\n\nIf the target was an Impostor, you'll become a <b><color=#ff1919>Refugee</color></b>.\nIf the target was a crewmate, you'll become a <b><color=#FFB347>Sheriff</color></b>.\nIf the target was a passive neutral or a neutral killer not specified, you'll become the role defined in the settings.\nIf the target was a neutral killer of a select few, you'll become the role they are.","","",""
 
 "# 附加职业 / Add-ons descriptions"
 "LastImpostorInfoLong","(附加职业):\n这个效果在内鬼仅剩一人时赋予该内鬼。使其击杀冷却缩短。","(Add-ons):\nThis effect is given to the last surviving Impostor. Reduces their kill cooldown.","(Атрибут):\nАтрибут, присваивается последнему Предателю. \nВремя отката убийства становится меньше, чем обычно. \nНе назначается Охотнику за головами, Серийному убийце или Вампиру.","(附加職業):\n這個效果只在偽裝者陣營只剩下一人時賦予該玩家，被賦予效果的玩家殺人冷卻將會縮短。","(附加职业):\n这个效果在内鬼仅剩一人时赋予该内鬼。使其击杀冷却缩短。"
@@ -1444,6 +1447,7 @@ SidekickInfoLong","(中立职业):\n仅剩变节者阵营与船员阵营且变�
 "Role.Dictator","<color=#df9b00>独裁者</color>","<color=#df9b00>Dictator</color>","","",""
 "Role.Mayor","<color=#204d42>市长</color>","<color=#204d42>Mayor</color>","","",""
 "Role.Doctor","<color=#80ffdd>医生</color>","<color=#80ffdd>Doctor</color>","","",""
+"Role.Amnesiac","<color=#7FBFFF>失忆者</color>","<color=#7FBFFF>Amnesiac</color>","","<color=#7FBFFF>失憶者</color>",""
 
 "## 秃鹫设置 / Vulture Text Strings"
 "VultureArrowsPointingToDeadBody","指向尸体的箭头","Arrows pointing to dead bodies","Может видеть стрелки указывающие на трупы","",""
@@ -1503,6 +1507,23 @@ SidekickInfoLong","(中立职业):\n仅剩变节者阵营与船员阵营且变�
 "FarseerCanBeMadmate","<color=#BA55D3>预言家</color>可以成为<color=#ff1919>叛徒</color>","<color=#BA55D3>Overseer</color> can become <color=#ff1919>Madmate</color>","<color=#BA55D3>Смотритель</color> может стать <color=#ff1919>Безумцем</color>","",""
 "RetributionistCanBeMadmate","<color=#228B22>惩罚者</color>可以成为<color=#ff1919>叛徒</color>","<color=#228B22>Retributionist</color> can become <color=#ff1919>Madmate</color>","<color=#228B22>Возмездник</color> может стать <color=#ff1919>Безумцем</color>","",""
 "GanFarseerCanBeMadmate","可以招募<color=#BA55D3>预言家</color>","<color=#BA55D3>Overseer</color> can be converted","<color=#BA55D3>Смотритель</color> может быть превращен","",""
+
+"## Amnesiac Text Strings"
+"RememberCooldown","记忆冷却","Remember Cooldown","","",""
+"RefugeeKillCD","<color=#ff1919>失忆者</color>的击杀冷却","<color=#ff1919>Refugee</color>'s Kill Cooldown","","",""
+"AmnesiacRemembered","一个失忆者记得你的角色！","An Amnesiac remembered your role!","","",""
+"AmnesiacInvalidTarget","记住失败","Remember failed","","",""
+"RememberedNeutralKiller","你记得你是个带刀中立！","You remembered you were a neutral killer!","","",""
+"RememberedMaverick","你还记得你是个独行者！","You remembered you were a Maverick!","","",""
+"RememberedWitch","你记得你是个女巫！","You remembered you were a Witch!","","",""
+"RememberedPursuer","你记得你是一个追击者！","You remembered you were a Pursuer!","","",""
+"RememberedFollower","你记得你是一个追随者！","You remembered you were a Follower!","","",""
+"RememberedAmnesiac","你没有记住自己的身份","You failed to remember your role.","","",""
+"RememberedImpostor","你记得你是个内鬼！","You remembered you were an Impostor!","","",""
+"RememberedCrewmate","你记得你是个船员","You remembered you were a crewmate!","","",""
+"RememberButtonText","回想起","Remember","","",""
+"IncompatibleNeutralMode","如果中立不兼容，则变为","If neutral is incompatible, turn into","","",""
+"IncompatibleCrewmateMode","如果船员不兼容，则变为","If crewmate is incompatible, turn into","","",""
 
 "## 模组信息 / Mod Info"
 "DevAndSpnTitle","NTOHER大家族","NTOHER family","Семья NTOHER","NTOHER大家族","NTOHER大家族"

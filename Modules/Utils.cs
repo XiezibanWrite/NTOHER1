@@ -388,6 +388,7 @@ public static class Utils
             case CustomRoles.Totocalcio:
             case CustomRoles.Succubus:
             case CustomRoles.Vulture:
+            case CustomRoles.Amnesiac:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -1184,6 +1185,7 @@ public static class Utils
                     (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoleTypes.Impostor) && Options.MadmateKnowWhosImp.GetBool()) ||
                     (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Madmate) && Options.ImpKnowWhosMadmate.GetBool()) ||
                     (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) ||
+                    (Amnesiac.KnowRole(seer, target)) ||
                     (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                     (Totocalcio.KnowRole(seer, target)) ||
                     (Succubus.KnowRole(seer, target)) ||

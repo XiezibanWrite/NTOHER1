@@ -203,6 +203,9 @@ class HudManagerPatch
                     case CustomRoles.Vulture:
                         __instance.ReportButton.OverrideText(GetString("VultureEatButtonText"));
                         break;
+                    case CustomRoles.Amnesiac:
+                        __instance.KillButton.OverrideText(GetString("RememberButtonText"));
+                        break;
                 }
 
                 //バウンティハンターのターゲットテキスト
