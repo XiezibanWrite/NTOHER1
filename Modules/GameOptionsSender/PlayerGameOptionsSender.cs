@@ -116,6 +116,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Revolutionist:
             case CustomRoles.Medicaler:
             case CustomRoles.Provocateur:
+            case CustomRoles.Amnesiac:
             case CustomRoles.Vulture:
                 opt.SetVision(false);
                 break;

@@ -65,7 +65,7 @@ internal class VersionShowerStartPatch
 
 #if RELEASE || CANARY
         string additionalCredentials = GetString("TextBelowVersionText");
-        if (additionalCredentials != null && additionalCredentials != "*TextBelowVersionText")
+        if (additionalCredentials != null && additionalCredentials != "TextBelowVersionText")
          Main.credentialsText += $"\n<size=75%>\n<color=#ffc0cb>TOHE</color> <color=#BA55D3>by</color> <color=#ffc0cb>KARPED1EM</color>\n<color=#00BFFF>NTOHER</color> <color=#BA55D3>by</color> <color=#87CEFA>毒液</color> & <color=#00FFFF>LezaiYa</color>\n嘻嘻感谢<color=#F08080>Night_瓜</color></size>";
         {
             Main.credentialsText += $"\n{additionalCredentials}";

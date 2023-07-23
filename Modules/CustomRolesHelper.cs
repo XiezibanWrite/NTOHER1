@@ -92,7 +92,6 @@ internal static class CustomRolesHelper
                 CustomRoles.Oracle => CustomRoles.Crewmate,
                 CustomRoles.Councillor => CustomRoles.Impostor,
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
-
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -158,6 +157,7 @@ internal static class CustomRolesHelper
             CustomRoles.FFF or
             CustomRoles.Vulture or
             CustomRoles.Gamer or
+            CustomRoles.Amnesiac or
             CustomRoles.DarkHide or
             CustomRoles.Provocateur or
             CustomRoles.Lawyer or
@@ -170,6 +170,7 @@ internal static class CustomRolesHelper
             CustomRoles.Arsonist or
             CustomRoles.Jackal or
             CustomRoles.God or
+            CustomRoles.Amnesiac or
             CustomRoles.Mario or
             CustomRoles.Innocent or
             CustomRoles.Pelican or
@@ -246,6 +247,7 @@ internal static class CustomRolesHelper
             CustomRoles.Jester or
             CustomRoles.Opportunist or
             CustomRoles.Mario or
+            CustomRoles.Amnesiac or
             CustomRoles.Terrorist or
             CustomRoles.Executioner or
             CustomRoles.Arsonist or

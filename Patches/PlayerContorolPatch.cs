@@ -276,6 +276,9 @@ class CheckMurderPatch
                 case CustomRoles.Succubus:
                     Succubus.OnCheckMurder(killer, target);
                     return false;
+                case CustomRoles.Amnesiac:
+                    Amnesiac.OnCheckMurder(killer, target);
+                    return false;
 
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:
@@ -1447,6 +1450,7 @@ class FixedUpdatePatch
                 else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Succubus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.God)) RoleText.enabled = true;
+                else if (Amnesiac.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.GM)) RoleText.enabled = true;
                 else if (Main.GodMode.Value) RoleText.enabled = true;
                 else RoleText.enabled = false; //そうでなければロールを非表示

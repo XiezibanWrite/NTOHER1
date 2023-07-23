@@ -430,6 +430,7 @@ static class ExtendedPlayerControl
             CustomRoles.Crewpostor => false,
             CustomRoles.Totocalcio => Totocalcio.CanUseKillButton(pc),
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
+            CustomRoles.Amnesiac => Amnesiac.CanUseKillButton(pc),
             CustomRoles.Warlock => !Main.isCurseAndKill.TryGetValue(pc.PlayerId, out bool wcs) || !wcs,
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -606,6 +607,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Councillor:
                 Councillor.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Amnesiac:
+                Amnesiac.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)
