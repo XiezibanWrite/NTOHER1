@@ -209,6 +209,9 @@ class HudManagerPatch
                     case CustomRoles.TimeMaster:
                         __instance.AbilityButton.buttonLabelText.text = GetString("TimeMasterVentButtonText");
                         break;
+                    case CustomRoles.Deathpact:
+                        __instance.AbilityButton.OverrideText(GetString("DeathpactButtonText"));
+                        break;
                 }
 
                 //バウンティハンターのターゲットテキスト

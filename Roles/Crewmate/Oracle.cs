@@ -103,6 +103,7 @@ public static class Oracle
             CustomRoles.OverKiller or
             CustomRoles.Hangman or
             CustomRoles.Bard or
+            CustomRoles.Deathpact or
             CustomRoles.Swooper
                 => "Imp",
             

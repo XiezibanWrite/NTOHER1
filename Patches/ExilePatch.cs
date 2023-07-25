@@ -117,6 +117,7 @@ class ExileControllerWrapUpPatch
                 CustomRoles.Greedier or
                 CustomRoles.DovesOfNeace or
                 CustomRoles.QuickShooter or
+                CustomRoles.Deathpact or
                 CustomRoles.Bomber
                 ) pc.RpcResetAbilityCooldown();
         }

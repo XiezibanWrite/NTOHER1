@@ -215,6 +215,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 AURoleOptions.EngineerCooldown = Options.TimeMasterSkillCooldown.GetFloat();
                 AURoleOptions.EngineerInVentMaxTime = 1;
                 break;
+            case CustomRoles.Deathpact:
+                Deathpact.ApplyGameOptions();
+                break;
         }
 
         // Ϊ�Ի��ߵ�����
@@ -240,7 +243,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.GrenadierCauseVision.GetFloat());
             }
         }
-
+        Deathpact.SetDeathpactVision(player, opt);
         foreach (var subRole in Main.PlayerStates[player.PlayerId].SubRoles)
         {
             switch (subRole)

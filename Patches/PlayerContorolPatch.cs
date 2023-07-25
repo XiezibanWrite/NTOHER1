@@ -813,6 +813,10 @@ class ShapeshiftPatch
             case CustomRoles.Hacker:
                 Hacker.OnShapeshift(shapeshifter, shapeshifting, target);
                 break;
+            case CustomRoles.Deathpact:
+                if (shapeshifting) 
+                    Deathpact.OnShapeshift(shapeshifter, target);
+                break;
         }
 
     End:
@@ -1030,7 +1034,7 @@ class ReportDeadBodyPatch
         Judge.OnReportDeadBody();
         Greedier.OnReportDeadBody();
         Doomsayer.OnReportDeadBody();
-
+        Deathpact.OnReportDeadBody();
         Mortician.OnReportDeadBody(player, target);
         Mediumshiper.OnReportDeadBody(target);
 
@@ -1098,6 +1102,7 @@ class FixedUpdatePatch
             NameNotifyManager.OnFixedUpdate(player);
             TargetArrow.OnFixedUpdate(player);
             LocateArrow.OnFixedUpdate(player);
+            Deathpact.OnFixedUpdate(player);
         }
 
 
@@ -1508,6 +1513,8 @@ class FixedUpdatePatch
                         SoloKombatManager.GetNameNotify(target, ref RealName);
                     if (NameNotifyManager.GetNameNotify(target, out var name))
                         RealName = name;
+                    if (Deathpact.IsInActiveDeathpact(seer))
+                        RealName = Deathpact.GetDeathpactString(seer);
                 }
 
                 //NameColorManager準拠の処理
@@ -1610,6 +1617,8 @@ class FixedUpdatePatch
                 Suffix.Append(Mortician.GetTargetArrow(seer, target));
 
                 Suffix.Append(EvilTracker.GetTargetArrow(seer, target));
+                Suffix.Append(Deathpact.GetDeathpactPlayerArrow(seer, target));
+                Suffix.Append(Deathpact.GetDeathpactMark(seer, target));
 
                 if (Vulture.ArrowsPointingToDeadBody.GetBool())
                     Suffix.Append(Vulture.GetTargetArrow(seer, target));

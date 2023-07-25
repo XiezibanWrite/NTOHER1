@@ -795,6 +795,9 @@ internal static class RPC
             case CustomRoles.Doomsayer:
                 Doomsayer.Add(targetId);
                 break;
+            case CustomRoles.Deathpact:
+                Deathpact.Add(targetId);
+                break;
         }
         HudManager.Instance.SetHudActive(true);
         if (PlayerControl.LocalPlayer.PlayerId == targetId) RemoveDisableDevicesPatch.UpdateDisableDevices();

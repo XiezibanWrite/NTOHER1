@@ -208,7 +208,7 @@ internal class ChangeRoleSettings
             Vulture.Init();
             Oracle.Init();
             Doomsayer.Init();
-
+            Deathpact.Init();
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
             AntiBlackout.Reset();
@@ -564,6 +564,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Doomsayer:
                         Doomsayer.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Deathpact:
+                        Deathpact.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
