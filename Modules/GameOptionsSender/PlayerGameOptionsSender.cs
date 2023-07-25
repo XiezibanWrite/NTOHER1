@@ -211,6 +211,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                     : 300f;
                 AURoleOptions.EngineerInVentMaxTime = 1;
                 break;
+            case CustomRoles.TimeMaster:
+                AURoleOptions.EngineerCooldown = Options.TimeMasterSkillCooldown.GetFloat();
+                AURoleOptions.EngineerInVentMaxTime = 1;
+                break;
         }
 
         // Ϊ�Ի��ߵ�����

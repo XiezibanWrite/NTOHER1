@@ -296,6 +296,25 @@ class CheckMurderPatch
                     if (Counterfeiter.CanBeClient(target) && Counterfeiter.CanSeel(killer.PlayerId))
                         Counterfeiter.SeelToClient(killer, target);
                     return false;
+                case CustomRoles.TimeMaster:
+                if (Main.TimeMasterInProtect.ContainsKey(target.PlayerId) && killer.PlayerId != target.PlayerId)
+                    if (Main.TimeMasterInProtect[target.PlayerId] + Options.TimeMasterSkillDuration.GetInt() >= Utils.GetTimeStamp(DateTime.UtcNow))
+                    {
+                        foreach (var player in Main.AllPlayerControls)
+                        {
+                            if (!killer.Is(CustomRoles.Pestilence))
+                        {
+                            if (Main.TimeMasterBackTrack.ContainsKey(player.PlayerId))
+                            {
+                                var position = Main.TimeMasterBackTrack[player.PlayerId];
+                                Utils.TP(player.NetTransform, position);
+                            }
+                        }
+                        }
+                        killer.SetKillCooldownV2(target: target, forceAnime: true);
+                        return false;
+                    }
+                break;
             }
         }
 
@@ -1010,6 +1029,7 @@ class ReportDeadBodyPatch
         Hacker.OnReportDeadBody();
         Judge.OnReportDeadBody();
         Greedier.OnReportDeadBody();
+        Doomsayer.OnReportDeadBody();
 
         Mortician.OnReportDeadBody(player, target);
         Mediumshiper.OnReportDeadBody(target);
@@ -1605,7 +1625,15 @@ class FixedUpdatePatch
                         if (AntiAdminer.IsCameraWatch) Suffix.Append("★" + GetString("AntiAdminerCA"));
                     }
                 }
-
+                if (GameStates.IsInTask && player.Is(CustomRoles.TimeMaster))
+                {
+                    if (Main.TimeMasterInProtect.TryGetValue(player.PlayerId, out var vtime) && vtime + Options.TimeMasterSkillDuration.GetInt() < Utils.GetTimeStamp())
+                    {
+                        Main.TimeMasterInProtect.Remove(player.PlayerId);
+                        player.RpcGuardAndKill();
+                        player.Notify(GetString("TimeMasterSkillStop"));
+                    }
+                }
                 if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
                     Suffix.Append(SoloKombatManager.GetDisplayHealth(target));
 
@@ -1823,8 +1851,32 @@ class EnterVentPatch
                 pc.Notify(string.Format(GetString("DovesOfNeaceOnGuard"), Main.DovesOfNeaceNumOfUsed[pc.PlayerId]));
             }
         }
+        if (pc.Is(CustomRoles.TimeMaster))
+        {
+            Main.TimeMasterInProtect.Remove(pc.PlayerId);
+            Main.TimeMasterInProtect.Add(pc.PlayerId, Utils.GetTimeStamp());
+            if (!pc.IsModClient()) 
+            pc.RpcGuardAndKill(pc);
+            pc.Notify(GetString("TimeMasterOnGuard"), Options.TimeMasterSkillDuration.GetFloat());
+                foreach (var player in Main.AllPlayerControls)
+                {
+                    if (Main.TimeMasterBackTrack.ContainsKey(player.PlayerId))
+                    {
+                         var position = Main.TimeMasterBackTrack[player.PlayerId];
+                    Utils.TP(player.NetTransform, position);
+                    if (pc != player)
+                    player?.MyPhysics?.RpcBootFromVent(player.PlayerId);
+                    Main.TimeMasterBackTrack.Remove(player.PlayerId);
+                    }
+                    else
+                    {
+                        Main.TimeMasterBackTrack.Add(player.PlayerId, player.GetTruePosition());
+                    }
+                }
+        }
     }
 }
+
 [HarmonyPatch(typeof(PlayerPhysics), nameof(PlayerPhysics.CoEnterVent))]
 class CoEnterVentPatch
 {

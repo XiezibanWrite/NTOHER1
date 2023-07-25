@@ -206,6 +206,9 @@ class HudManagerPatch
                     case CustomRoles.Amnesiac:
                         __instance.KillButton.OverrideText(GetString("RememberButtonText"));
                         break;
+                    case CustomRoles.TimeMaster:
+                        __instance.AbilityButton.buttonLabelText.text = GetString("TimeMasterVentButtonText");
+                        break;
                 }
 
                 //バウンティハンターのターゲットテキスト

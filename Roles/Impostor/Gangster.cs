@@ -7,7 +7,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class Gangster
 {
-    private static readonly int Id = 5054525;
+    private static readonly int Id = 2900;
     private static List<byte> playerIdList = new();
 
     private static OptionItem RecruitLimitOpt;
@@ -16,6 +16,8 @@ public static class Gangster
     public static OptionItem MayorCanBeMadmate;
     public static OptionItem NGuesserCanBeMadmate;
     public static OptionItem JudgeCanBeMadmate;
+    public static OptionItem MarshallCanBeMadmate;
+    public static OptionItem FarseerCanBeMadmate;
     public static OptionItem RetributionistCanBeMadmate;
 
     public static Dictionary<byte, int> RecruitLimit = new();
@@ -32,7 +34,10 @@ public static class Gangster
         MayorCanBeMadmate = BooleanOptionItem.Create(Id + 15, "GanMayorCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
         NGuesserCanBeMadmate = BooleanOptionItem.Create(Id + 16, "GanNGuesserCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
         JudgeCanBeMadmate = BooleanOptionItem.Create(Id + 17, "GanJudgeCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
+        MarshallCanBeMadmate = BooleanOptionItem.Create(Id + 18, "GanMarshallCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
+        FarseerCanBeMadmate = BooleanOptionItem.Create(Id + 19, "GanFarseerCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
         RetributionistCanBeMadmate = BooleanOptionItem.Create(Id + 20, "GanRetributionistCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
+
     }
     public static void Init()
     {
@@ -89,17 +94,17 @@ public static class Gangster
 
             Logger.Info("设置职业:" + target?.Data?.PlayerName + " = " + target.GetCustomRole().ToString() + " + " + CustomRoles.Madmate.ToString(), "Assign " + CustomRoles.Madmate.ToString());
             if (RecruitLimit[killer.PlayerId] < 0)
-                HudManager.Instance.KillButton.OverrideText(GetString("KillButtonText"));
+                HudManager.Instance.KillButton.OverrideText($"{GetString("KillButtonText")}");
             Logger.Info($"{killer.GetNameWithRole()} : 剩余{RecruitLimit[killer.PlayerId]}次招募机会", "Gangster");
             return true;
         }
         if (RecruitLimit[killer.PlayerId] < 0)
-            HudManager.Instance.KillButton.OverrideText(GetString("KillButtonText"));
+            HudManager.Instance.KillButton.OverrideText($"{GetString("KillButtonText")}");
         killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Gangster), GetString("GangsterRecruitmentFailure")));
         Logger.Info($"{killer.GetNameWithRole()} : 剩余{RecruitLimit[killer.PlayerId]}次招募机会", "Gangster");
         return false;
     }
-    public static string GetRecruitLimit(byte playerId) => Utils.ColorString(CanRecruit(playerId) ? Color.red : Color.gray, RecruitLimit.TryGetValue(playerId, out var recruitLimit) ? $"({recruitLimit})" : "Invalid");
+    public static string GetRecruitLimit(byte playerId) => Utils.ColorString(CanRecruit(playerId) ? Utils.GetRoleColor(CustomRoles.Gangster).ShadeColor(0.25f) : Color.gray, RecruitLimit.TryGetValue(playerId, out var recruitLimit) ? $"({recruitLimit})" : "Invalid");
 
     public static bool CanBeMadmate(this PlayerControl pc)
     {
