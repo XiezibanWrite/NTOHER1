@@ -611,6 +611,9 @@ static class ExtendedPlayerControl
             case CustomRoles.Amnesiac:
                 Amnesiac.SetKillCooldown(player.PlayerId);
                 break;
+            case CustomRoles.Deathpact:
+                Deathpact.SetKillCooldown(player.PlayerId);
+                break;
         }
         if (player.PlayerId == LastImpostor.currentId)
             LastImpostor.SetKillCooldown();

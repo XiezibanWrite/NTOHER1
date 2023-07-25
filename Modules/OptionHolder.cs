@@ -600,6 +600,7 @@ public static class Options
         Hangman.SetupCustomOption();
         Swooper.SetupCustomOption();
         Councillor.SetupCustomOption();
+        Deathpact.SetupCustomOption();
 
         // Crewmate
         SetupRoleOptions(102255, TabGroup.CrewmateRoles, CustomRoles.NiceGuesser);

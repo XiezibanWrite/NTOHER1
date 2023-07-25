@@ -94,6 +94,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
                 CustomRoles.TimeMaster => CustomRoles.Engineer,
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
+                CustomRoles.Deathpact => CustomRoles.Shapeshifter,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -240,6 +241,7 @@ internal static class CustomRolesHelper
             CustomRoles.Bard or
             CustomRoles.Swooper or
             CustomRoles.Councillor or
+            CustomRoles.Deathpact or
             CustomRoles.Crewpostor;     
     }
     public static bool IsNeutral(this CustomRoles role) // �Ƿ�����

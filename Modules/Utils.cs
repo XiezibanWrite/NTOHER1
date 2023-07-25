@@ -1074,6 +1074,8 @@ public static class Utils
 
             SelfSuffix.Append(EvilTracker.GetTargetArrow(seer, seer));
 
+            SelfSuffix.Append(Deathpact.GetDeathpactPlayerArrow(seer));
+
             //KB自身名字后缀
 
             if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
@@ -1096,6 +1098,10 @@ public static class Utils
                 SelfName = $">{ColorString(seer.GetRoleColor(), string.Format(GetString("EnterVentWinCountDown"), Main.RevolutionistCountdown.TryGetValue(seer.PlayerId, out var x) ? x : 10))}";
             if (Pelican.IsEaten(seer.PlayerId))
                 SelfName = $"{ColorString(GetRoleColor(CustomRoles.Pelican), GetString("EatenByPelican"))}";
+            if (Pelican.IsEaten(seer.PlayerId))
+                SelfName = $"{ColorString(GetRoleColor(CustomRoles.Pelican), GetString("EatenByPelican"))}";
+            if (Deathpact.IsInActiveDeathpact(seer))
+                SelfName = Deathpact.GetDeathpactString(seer);
             if (NameNotifyManager.GetNameNotify(seer, out var name))
                 SelfName = name;
 
@@ -1260,6 +1266,7 @@ public static class Utils
                 TargetMark.Append(Medicaler.TargetMark(seer, target));
                 TargetMark.Append(Lawyer.LawyerMark(seer, target));
                 TargetMark.Append(Totocalcio.TargetMark(seer, target));
+                TargetMark.Append(Deathpact.GetDeathpactMark(seer, target));
 
                 //KB目标玩家名字后缀
                 TargetSuffix.Clear();

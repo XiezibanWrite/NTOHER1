@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "1.1.2.2";
+    public const string PluginVersion = "1.1.2";
     public const int PluginCreate = 5;
 
     public static readonly bool ShowQQButton = true;
@@ -453,6 +453,7 @@ public enum CustomRoles
     Swooper,
     Crewpostor,
     Councillor,
+    Deathpact,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,
@@ -553,7 +554,6 @@ public enum CustomRoles
     Autopsy,
     Pursuer,
     Maverick,
-    Refugee,
     Sidekick,
     Soulless,
     Pestilence,

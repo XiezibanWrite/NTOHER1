@@ -15,7 +15,6 @@ public static class Amnesiac
     private static List<byte> playerIdList = new();
 
     public static OptionItem RememberCooldown;
-    public static OptionItem RefugeeKillCD;
     public static OptionItem IncompatibleNeutralMode;
     public static readonly string[] amnesiacIncompatibleNeutralMode =
     {
@@ -31,8 +30,6 @@ public static class Amnesiac
     {
         SetupRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Amnesiac);
         RememberCooldown = FloatOptionItem.Create(Id + 10, "RememberCooldown", new(0f, 180f, 2.5f), 25f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amnesiac])
-            .SetValueFormat(OptionFormat.Seconds);
-        RefugeeKillCD = FloatOptionItem.Create(Id + 11, "RefugeeKillCD", new(0f, 180f, 2.5f), 25f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amnesiac])
             .SetValueFormat(OptionFormat.Seconds);
         IncompatibleNeutralMode = StringOptionItem.Create(Id + 12, "IncompatibleNeutralMode", amnesiacIncompatibleNeutralMode, 0, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amnesiac]);
     }
@@ -204,7 +201,6 @@ public static class Amnesiac
         {
             RememberLimit--;
             SendRPC();
-            killer.RpcSetCustomRole(CustomRoles.Refugee);
 
             killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedImpostor")));
             target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("AmnesiacRemembered")));
@@ -298,7 +294,6 @@ public static class Amnesiac
     {
         if (player.Is(CustomRoles.Glitch) && target.Is(CustomRoles.Glitch)) return true;
         if (player.Is(CustomRoles.Pelican) && target.Is(CustomRoles.Pelican)) return true;
-        if (player.Is(CustomRoles.Refugee) && target.Is(CustomRoles.Refugee)) return true;
         if (player.Is(CustomRoles.Succubus) && target.Is(CustomRoles.Succubus)) return true;
         return false;
     }
