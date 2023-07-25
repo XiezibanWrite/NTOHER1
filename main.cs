@@ -31,9 +31,9 @@ public class Main : BasePlugin
     public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
     public const string DebugKeySalt = "#59687b";
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
-    public static readonly string MainMenuText = "<size=200%>修了114514年BUG从10变到20我真的佩服我自己！</size>";
+    public static readonly string MainMenuText = "";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "1.1.2.1";
+    public const string PluginVersion = "1.1.2.2";
     public const int PluginCreate = 5;
 
     public static readonly bool ShowQQButton = true;
@@ -98,6 +98,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, float> AllPlayerKillCooldown = new();
     public static Dictionary<byte, Vent> LastEnteredVent = new();
     public static Dictionary<byte, Vector2> LastEnteredVentLocation = new();
+    public static Dictionary<byte, Vector2> TimeMasterBackTrack = new();
     public static List<byte> CyberStarDead = new();
     public static List<byte> BoobyTrapBody = new();
     public static Dictionary<byte, byte> KillerOfBoobyTrapBody = new();
@@ -144,6 +145,9 @@ public class Main : BasePlugin
     public static Dictionary<byte, byte> ShapeshiftTarget = new();
     public static Dictionary<(byte, byte), string> targetArrows = new();
     public static Dictionary<byte, Vector2> EscapeeLocation = new();
+    public static Dictionary<byte, int> TimeMasterNum = new();
+    public static Dictionary<byte, long> TimeMasterInProtect = new();
+    public static Dictionary<byte, Vector2> TimeMasterLocation = new();
     public static bool VisibleTasksCount = false;
     public static string nickName = "";
     public static bool introDestroyed = false;
@@ -200,7 +204,7 @@ public class Main : BasePlugin
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
 
-        Logger = BepInEx.Logging.Logger.CreateLogSource("TOHE");
+        Logger = BepInEx.Logging.Logger.CreateLogSource("NTOHER");
         TOHE.Logger.Enable();
         TOHE.Logger.Disable("NotifyRoles");
         TOHE.Logger.Disable("SwitchSystem");
@@ -289,6 +293,7 @@ public class Main : BasePlugin
                 {CustomRoles.DovesOfNeace, "#FFFFFF" },
                 {CustomRoles.Oracle, "#6666FF"},
                 {CustomRoles.Retributionist, "#228B22"},
+                {CustomRoles.TimeMaster, "#44baff"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Vulture, "#824738"},
@@ -315,6 +320,7 @@ public class Main : BasePlugin
                 {CustomRoles.Succubus, "#ff00ff"},
                 {CustomRoles.Lawyer, "#949e52"},
                 {CustomRoles.Amnesiac, "#7FBFFF"},
+                {CustomRoles.Doomsayer, "#14f786"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -484,6 +490,7 @@ public enum CustomRoles
     DovesOfNeace,
     Oracle,
     Retributionist,
+    TimeMaster,
     //Neutral
     Arsonist,
     Jester,
@@ -510,6 +517,7 @@ public enum CustomRoles
     Lawyer,
     Vulture,
     Amnesiac,
+    Doomsayer,
 
     //SoloKombat
     KB_Normal,
@@ -548,6 +556,7 @@ public enum CustomRoles
     Refugee,
     Sidekick,
     Soulless,
+    Pestilence,
 }
 //WinData
 public enum CustomWinner
@@ -578,6 +587,7 @@ public enum CustomWinner
     BloodKnight = CustomRoles.BloodKnight,
     Succubus = CustomRoles.Succubus,
     Vulture = 517,
+    Doomsayer = 518,
 }
 public enum AdditionalWinners
 {
@@ -591,6 +601,7 @@ public enum AdditionalWinners
     Sunnyboy = CustomRoles.Sunnyboy,
     Totocalcio = CustomRoles.Totocalcio,
     Lawyer = CustomRoles.Lawyer,
+    Doomsayer = CustomRoles.Doomsayer,
 
 }
 public enum SuffixModes

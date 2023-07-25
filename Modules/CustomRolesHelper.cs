@@ -92,6 +92,8 @@ internal static class CustomRolesHelper
                 CustomRoles.Oracle => CustomRoles.Crewmate,
                 CustomRoles.Councillor => CustomRoles.Impostor,
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
+                CustomRoles.TimeMaster => CustomRoles.Engineer,
+                CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -161,6 +163,7 @@ internal static class CustomRolesHelper
             CustomRoles.DarkHide or
             CustomRoles.Provocateur or
             CustomRoles.Lawyer or
+            CustomRoles.Doomsayer or
             CustomRoles.BloodKnight;
     }
     public static bool IsNeutralKilling(this CustomRoles role) //�Ƿ�а������������򵥶�ʤ����������
@@ -182,6 +185,7 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Succubus or
             CustomRoles.Vulture or
+            CustomRoles.Doomsayer or
             CustomRoles.Lawyer;
     }
     public static bool IsCK(this CustomRoles role) // �Ƿ������Ա
@@ -268,6 +272,7 @@ internal static class CustomRolesHelper
             CustomRoles.Totocalcio or
             CustomRoles.Lawyer or
             CustomRoles.Vulture or
+            CustomRoles.Doomsayer or
             CustomRoles.Succubus;
     }
     public static bool CheckAddonConfilct(CustomRoles role, PlayerControl pc)
@@ -302,6 +307,7 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Vulture)) return false;
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Vulture)) return false;
         if (role is CustomRoles.Autopsy && (pc.Is(CustomRoles.Doctor)) || pc.Is(CustomRoles.Scientist) || pc.Is(CustomRoles.Sunnyboy) ) return false;
+        if (role is CustomRoles.EvilGuesser && (pc.Is(CustomRoles.Doomsayer))) return false;
         return true;
     }
     public static RoleTypes GetRoleTypes(this CustomRoles role)

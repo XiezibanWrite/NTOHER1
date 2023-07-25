@@ -3,7 +3,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
-	<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+	  <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <Description>New Town Of Host Edited Roles</Description>
     <Authors>DUYE</Authors>
     <langVersion>latest</langVersion>

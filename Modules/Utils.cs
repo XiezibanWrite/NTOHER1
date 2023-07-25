@@ -389,6 +389,7 @@ public static class Utils
             case CustomRoles.Succubus:
             case CustomRoles.Vulture:
             case CustomRoles.Amnesiac:
+            case CustomRoles.Doomsayer:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -525,6 +526,10 @@ public static class Utils
                 break;
             case CustomRoles.Vulture:
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Vulture).ShadeColor(0.25f), $"({(Vulture.BodyReportCount.TryGetValue(playerId, out var count1) ? count1 : 0)}/{Vulture.NumberOfReportsToWin.GetInt()})"));
+                break;
+            case CustomRoles.Doomsayer:
+                var doomsayerguess = Doomsayer.GuessedPlayerCount();
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Doomsayer).ShadeColor(0.25f), $"({doomsayerguess.Item1}/{doomsayerguess.Item2})"));
                 break;
             default:
                 //タスクテキスト

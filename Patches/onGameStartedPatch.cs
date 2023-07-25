@@ -55,7 +55,8 @@ internal class ChangeRoleSettings
             Main.BoobyTrapBody = new();
             Main.KillerOfBoobyTrapBody = new();
             Main.CleanerBodies = new();
-
+            Main.TimeMasterBackTrack = new();
+            Main.TimeMasterNum = new();
             Main.LastEnteredVent = new();
             Main.LastEnteredVentLocation = new();
             Main.EscapeeLocation = new();
@@ -206,6 +207,7 @@ internal class ChangeRoleSettings
             Lawyer.Init();
             Vulture.Init();
             Oracle.Init();
+            Doomsayer.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -556,6 +558,12 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Oracle:
                         Oracle.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.TimeMaster:
+                        Main.TimeMasterNum[pc.PlayerId] = 0;
+                        break;
+                    case CustomRoles.Doomsayer:
+                        Doomsayer.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())

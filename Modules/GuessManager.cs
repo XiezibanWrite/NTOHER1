@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using TOHE.Modules;
+using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
 
@@ -86,7 +87,7 @@ public static class GuessManager
 
         if (!AmongUsClient.Instance.AmHost) return false;
         if (!GameStates.IsInGame || pc == null) return false;
-        if (!pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.EvilGuesser) && !pc.Is(CustomRoles.Judge) && !pc.Is(CustomRoles.Councillor)) return false;
+        if (!pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.EvilGuesser) && !pc.Is(CustomRoles.Judge) && !pc.Is(CustomRoles.Doomsayer) && !pc.Is(CustomRoles.Councillor)) return false;
 
         int operate = 0; // 1:ID 2:猜测
         msg = msg.ToLower().TrimStart().TrimEnd();
@@ -111,6 +112,7 @@ public static class GuessManager
 
             if (
             (pc.Is(CustomRoles.NiceGuesser) && Options.GGTryHideMsg.GetBool()) ||
+            (pc.Is(CustomRoles.Doomsayer) && Doomsayer.DoomsayerTryHideMsg.GetBool()) ||
             (pc.Is(CustomRoles.EvilGuesser) && Options.EGTryHideMsg.GetBool())
             ) TryHideMsg();
             else if (pc.AmOwner && !isUI) Utils.SendMessage(originMsg, 255, pc.GetRealName());
@@ -182,6 +184,40 @@ public static class GuessManager
                         return true;
                     }
                 }
+                if (pc.Is(CustomRoles.Doomsayer))
+                {
+                    if (Doomsayer.CantGuess)
+                    {
+                        if (!isUI) Utils.SendMessage(GetString("DoomsayerCantGuess"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("DoomsayerCantGuess"));
+                        return true;
+                    }
+
+                    if (role.IsImpostor() && !Doomsayer.DCanGuessImpostors.GetBool())
+                    {
+                        if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("GuessNotAllowed"));
+                        return true;
+                    }
+                    if (role.IsCrewmate() && !Doomsayer.DCanGuessCrewmates.GetBool())
+                    {
+                        if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("GuessNotAllowed"));
+                        return true;
+                    }
+                    if (role.IsNeutral() && !Doomsayer.DCanGuessNeutrals.GetBool())
+                    {
+                        if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("GuessNotAllowed"));
+                        return true;
+                    }
+                    if (role.IsAdditionRole() && !Doomsayer.DCanGuessAdt.GetBool())
+                    {
+                        if (!isUI) Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("GuessAdtRole"));
+                        return true;
+                    }
+                }
                 if (pc.PlayerId == target.PlayerId)
                 {
                     if (!isUI) Utils.SendMessage(GetString("LaughToWhoGuessSelf"), pc.PlayerId, Utils.ColorString(Color.cyan, GetString("MessageFromKPD")));
@@ -217,6 +253,14 @@ public static class GuessManager
                     Utils.NotifyRoles(isForMeeting: true, NoCache: true);
 
                     new LateTask(() => { Utils.SendMessage(string.Format(GetString("GuessKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceGuesser), GetString("GuessKillTitle"))); }, 0.6f, "Guess Msg");
+
+                    if (pc.Is(CustomRoles.Doomsayer) && pc.PlayerId != dp.PlayerId)
+                    {
+                        new LateTask(() =>
+                        {
+                            Utils.SendMessage(string.Format(GetString("DoomsayerGuessCountMsg"), Doomsayer.GuessesCount), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doomsayer), GetString("DoomsayerGuessCountTitle")));
+                        }, 0.7f, "Doomsayer Guess Msg 2");
+                    }
 
                 }, 0.2f, "Guesser Kill");
             }
@@ -398,7 +442,6 @@ public static class GuessManager
     }
     public static void CreateGuesserButton(MeetingHud __instance)
     {
-
         foreach (var pva in __instance.playerStates)
         {
             var pc = Utils.GetPlayerById(pva.TargetPlayerId);
@@ -447,6 +490,9 @@ public static class GuessManager
     }
 
     public static TextMeshPro textTemplate;
+
+    public static Sprite NoNamePlateSpite { get; private set; }
+
     static void GuesserOnClick(byte playerId, MeetingHud __instance)
     {
         var pc = Utils.GetPlayerById(playerId);
@@ -478,7 +524,7 @@ public static class GuessManager
             Transform exitButtonMask = UnityEngine.Object.Instantiate(maskTemplate, exitButtonParent);
             exitButtonMask.transform.localScale = new Vector3(2.88f, 0.8f, 1f);
             exitButtonMask.transform.localPosition = new Vector3(0f, 0f, 1f);
-            exitButton.gameObject.GetComponent<SpriteRenderer>().sprite = smallButtonTemplate.GetComponent<SpriteRenderer>().sprite;
+            exitButton.gameObject.GetComponent<SpriteRenderer>().sprite = NoNamePlateSpite;
             exitButtonParent.transform.localPosition = new Vector3(3.88f, 2.12f, -200f);
             exitButtonParent.transform.localScale = new Vector3(0.22f, 0.9f, 1f);
             exitButtonParent.transform.SetAsFirstSibling();
@@ -500,11 +546,15 @@ public static class GuessManager
                 {
                     if (!Options.EGCanGuessImp.GetBool() && index == 1) continue;
                     if (!Options.EGCanGuessAdt.GetBool() && index == 3) continue;
+                    if (!Options.GGCanGuessCrew.GetBool() && !PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && index == 0) continue;
+                    if (!Options.GGCanGuessAdt.GetBool() && index == 3) continue;
                 }
                 else
                 {
-                    if (!Options.GGCanGuessCrew.GetBool() && !PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && index == 0) continue;
-                    if (!Options.GGCanGuessAdt.GetBool() && index == 3) continue;
+                    if (!Doomsayer.DCanGuessCrewmates.GetBool() && index == 0) continue;
+                    if (!Doomsayer.DCanGuessImpostors.GetBool() && index == 1) continue;
+                    if (!Doomsayer.DCanGuessNeutrals.GetBool() && index == 2) continue;
+                    if (!Doomsayer.DCanGuessAdt.GetBool() && index == 3) continue;
                 }
                 Transform TeambuttonParent = new GameObject().transform;
                 TeambuttonParent.SetParent(container);
@@ -512,7 +562,7 @@ public static class GuessManager
                 Teambutton.FindChild("ControllerHighlight").gameObject.SetActive(false);
                 Transform TeambuttonMask = UnityEngine.Object.Instantiate(maskTemplate, TeambuttonParent);
                 TextMeshPro Teamlabel = UnityEngine.Object.Instantiate(textTemplate, Teambutton);
-                Teambutton.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
+                Teambutton.GetComponent<SpriteRenderer>().sprite = NoNamePlateSpite;
                 RoleSelectButtons.Add((CustomRoleTypes)index, Teambutton.GetComponent<SpriteRenderer>());
                 TeambuttonParent.localPosition = new(-2.75f + (tabCount++ * 1.73f), 2.225f, -200);
                 TeambuttonParent.localScale = new(0.53f, 0.53f, 1f);
@@ -572,7 +622,7 @@ public static class GuessManager
                 Pagebutton.FindChild("ControllerHighlight").gameObject.SetActive(false);
                 Transform PagebuttonMask = UnityEngine.Object.Instantiate(maskTemplate, PagebuttonParent);
                 TextMeshPro Pagelabel = UnityEngine.Object.Instantiate(textTemplate, Pagebutton);
-                Pagebutton.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
+                Pagebutton.GetComponent<SpriteRenderer>().sprite = NoNamePlateSpite;
                 PagebuttonParent.localPosition = IsNext ? new(3.535f, -2.2f, -200) : new(-3.475f, -2.2f, -200);
                 PagebuttonParent.localScale = new(0.55f, 0.55f, 1f);
                 Pagelabel.color = Color.white;
@@ -615,7 +665,7 @@ public static class GuessManager
                 Transform buttonMask = UnityEngine.Object.Instantiate(maskTemplate, buttonParent);
                 TextMeshPro label = UnityEngine.Object.Instantiate(textTemplate, button);
 
-                button.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
+                button.GetComponent<SpriteRenderer>().sprite = NoNamePlateSpite;
                 if (!RoleButtons.ContainsKey(role.GetCustomRoleTypes()))
                 {
                     RoleButtons.Add(role.GetCustomRoleTypes(), new());

@@ -215,7 +215,9 @@ public static class Options
     public static OptionItem ImpCanBeAutopsy;
     public static OptionItem CrewCanBeAutopsy;
     public static OptionItem NeutralCanBeAutopsy;
-    public static OptionItem RetributionistCanKillNum;
+    public static OptionItem RetributionistCanKillNum; 
+    public static OptionItem TimeMasterSkillCooldown;
+    public static OptionItem TimeMasterSkillDuration;
 
     // タスク無効化
     public static OptionItem DisableTasks;
@@ -677,7 +679,15 @@ public static class Options
          .SetValueFormat(OptionFormat.Times);
         SetupRoleOptions(8700, TabGroup.CrewmateRoles, CustomRoles.Retributionist);
         RetributionistCanKillNum = IntegerOptionItem.Create(8710, "RetributionistCanKillNum", new(1, 15, 1), 1, TabGroup.CrewmateRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Retributionist]);
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Retributionist])
+            .SetValueFormat(OptionFormat.Players);
+        SetupRoleOptions(8950, TabGroup.CrewmateRoles, CustomRoles.TimeMaster);
+        TimeMasterSkillCooldown = FloatOptionItem.Create(8960, "TimeMasterSkillCooldown", new(1f, 180f, 1f), 20f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.TimeMaster])
+            .SetValueFormat(OptionFormat.Seconds);
+        TimeMasterSkillDuration = FloatOptionItem.Create(8961, "TimeMasterSkillDuration", new(1f, 999f, 1f), 20f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.TimeMaster])
+            .SetValueFormat(OptionFormat.Seconds);
 
         // Neutral
         SetupRoleOptions(50500, TabGroup.NeutralRoles, CustomRoles.Arsonist);
@@ -713,6 +723,7 @@ public static class Options
         Lawyer.SetupCustomOption();
         Succubus.SetupCustomOption();
         Vulture.SetupCustomOption();
+        Doomsayer.SetupCustomOption();
 
         // Add-Ons
         SetupLoversRoleOptionsToggle(50300);

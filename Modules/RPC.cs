@@ -84,6 +84,7 @@ enum CustomRPC
     SyncCurseAndKill,
     SetVultureArrow,
     RetributionistRevenge,
+    SetDoomsayerProgress,
 
     //SoloKombat
     SyncKBPlayer,
@@ -467,6 +468,9 @@ internal class RPCHandlerPatch
                 for (int i = 0; i < ccount; i++)
                     Main.isCurseAndKill.Add(reader.ReadByte(), reader.ReadBoolean());
                 break;
+            case CustomRPC.SetDoomsayerProgress:
+                Doomsayer.ReceiveRPC();
+                break;
         }
     }
 }
@@ -787,6 +791,9 @@ internal static class RPC
                 break;
             case CustomRoles.Councillor:
                 Councillor.Add(targetId);
+                break;
+            case CustomRoles.Doomsayer:
+                Doomsayer.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

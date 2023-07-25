@@ -16,6 +16,7 @@ class ChatControllerUpdatePatch
     public static void Postfix(ChatController __instance)
     {
         if (!__instance.TextArea.hasFocus) return;
+
         if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.C))
             ClipboardHelper.PutClipboardString(__instance.TextArea.text);
         if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.V))
