@@ -85,6 +85,7 @@ enum CustomRPC
     SetVultureArrow,
     RetributionistRevenge,
     SetDoomsayerProgress,
+    SetDeputyHandcuffLimit,
 
     //SoloKombat
     SyncKBPlayer,
@@ -471,6 +472,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetDoomsayerProgress:
                 Doomsayer.ReceiveRPC();
                 break;
+            case CustomRPC.SetDeputyHandcuffLimit:
+                Deputy.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -797,6 +801,9 @@ internal static class RPC
                 break;
             case CustomRoles.Deathpact:
                 Deathpact.Add(targetId);
+                break;
+            case CustomRoles.Deputy:
+                Deputy.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

@@ -279,6 +279,9 @@ class CheckMurderPatch
                 case CustomRoles.Amnesiac:
                     Amnesiac.OnCheckMurder(killer, target);
                     return false;
+                case CustomRoles.Deputy:
+                    Deputy.OnCheckMurder(killer, target);
+                    return false;
 
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:

@@ -120,6 +120,7 @@
 "Retributionist","惩罚者","Retributionist","Возмездник","",""
 "Farseer","预言家","Overseer","Смотритель","",""
 "TimeMaster","时间之主","Time Master","","",""
+"Deputy","捕快","Deputy","Заместитель","",""
 
 "# 中立阵营 / Neutrals"
 "Jester","小丑","Jester","Шут","小丑","小丑"
@@ -283,6 +284,7 @@
 "FarseerInfo","显示其他玩家的身份","Reveal roles of other players","Выявляйте роли других игроков","",""
 "AmnesiacInfo","记住玩家的身份","Remember the role of a player","","記住玩家的身份",""
 "DeathpactInfo","你可以准备去死了","Assign players to a death pact","Назначьте игроков для заключения договора о смерти","",""
+"DeputyInfo","别动！你被逮捕了！","Handcuff killers to increase their cooldowns","Выдавайте наручники убийцам для сброса отката убийства","",""
 
 "# 中立阵营 / Neutral descriptions"
 "ArsonistInfo","乖乖站好！","Douse Everyone and Ignite","Облейте всех игроков, а потом подожгите","燒吧，燒吧，燃燒吧","乖乖站好！"
@@ -425,6 +427,7 @@
 "RetributionistInfoLong","（船员阵营）:\n惩罚者死后可以击杀有限数量的玩家\n使用 /ret [玩家 ID]进行击杀","(Crewmates):\nAs the Retributionist, you can kill a limited amount of players after your death.\n\nUse /ret [playerID] to kill.","(Член Экипажа):\nВозмездник может убить определённое количество игроков после своей смерти.\n\nИспользуйте /ret [номер игрока] чтобы убить цель","",""
 "FarseerInfoLong","（船员阵营）:\n预言家的视野非常有限\n但你可以使用击杀按钮来显示附近玩家的身份\n使用预言按钮开始预言时\n○将在显示玩家目标旁边\n在指定的时间内靠近目标，以展示他的身份\n如果你移动得离目标太远，预言就会中止","(Crewmates):\nAs a Overseer you have very limited vision but you can use your kill button to reveal the role of a nearby player. Use the kill button to start the reveal, a 「○」 will be displayed next to the reveal target. Stay near the target for a defined time to reveal his role, if you move too far away from the target the reveal will be aborted.","(Член Экипажа):\nУ Смотрителя ограниченный обзор, но вы можете использовать кнопку убийства, чтобы показать роль ближайшего игрока. У этого игрока будет отображаться 「○」 рядом с никнеймом. Оставайтесь рядом с целью в течение определенного времени, чтобы раскрыть его роль, если вы отойдете слишком далеко от цели, раскрытие будет прервано.","",""
 "TimeMasterInfoLong","(船员阵营):\n时间之主可以跳管记录所有人的位置，当时间之主再次跳管，则会把所有人传送到被标记的位置，在能力持续期间，时间之主将获得一个时间之盾保护自己。","(Crewmates):\nAs the Time Master, use the vents to mark everyone's position.\nWhen using the ability again, every alive player will be rewinded back to the marked positions.\n\nDuring the ability duration, the Time Master gains a time shield, which protects them from death.","","",""
+"DeputyInfoLong","（船员阵营）:\n捕快可以使用击杀按钮重置目标的击杀冷却时间\n如果目标没有击杀按钮，那么手铐就是个废物","(Crewmates):\nAs the Deputy, use your kill button on a player to reset their kill cooldown.\n\nIf the target does not have a kill button, then the handcuff was a waste.","(Член Экипажа):\nЗаместитель при использовании кнопки убийства на игроке, может сбросить откат убийства.\n\nЕсли у цели нет кнопки убийства, то наручники были пустой тратой времени.","",""
 
 "# 中立阵营 / Neutrals descriptions"
 "ArsonistInfoLong","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。","(Neutrals):\nThe Arsonist can douse by clicking the kill button on the player and following them for a few seconds. When the dousing starts and it's successful, a shield animation will be displayed as a reminder (only visible to themselves). When the Arsonist has doused all surviving players, the Arsonist can vent to start the fire and win alone.\n\nIf the player name shows 「△」, that means they are being doused;\nif the player name shows 「▲」, it means they have been completely doused.","(нейтральный): поджигатель может закончить смазку, нажав на кнопку убийства игрока и следуя за ним в течение нескольких секунд, начать мазать, а также показать анимацию разбитого щита, когда она будет успешной (только для себя). После того, как все выжившие игроки были смазаны поджигателем, поджигатель мог воспламенить его, перепрыгнув через вентиляционную трубу и одержать победу в одиночку. \ n что n игрок показыва「△」заяв в смазыва \ что n что игрок показыва「▲」что смазыва.","(中立陣營):\n縱火犯可以通過對玩家使用殺人鍵並跟隨數秒來澆油，開始以及結束澆油時會出現盾牌破碎的效果作為提示。當所有存活玩家都被縱火犯澆上油時，縱火犯可以以跳管道的方式來點火，並單獨獲勝。\n\n玩家名字顯示「△」表示澆油中\n顯示「▲」表示已經澆油。","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。"
@@ -1587,6 +1590,16 @@ SidekickInfoLong","(中立职业):\n仅剩变节者阵营与船员阵营且变�
 "DeathpactExecuted","死亡契约被执行","Death Pact was executed.","Пакт смерти был исполнен","",""
 "DeathpactAverted","死亡契约得以避免","Death Pact was averted.","Пакт смерти был предотвращен","",""
 "DeathpactButtonText","指定","Assign","НАЗНАЧИТЬ","",""
+
+"## 捕快设置"
+"DeputyHandcuffCooldown","手铐冷却","Handcuff Cooldown","Откат наручников","",""
+"DeputyHandcuffMax","手铐最大数量","Maximum Handcuffs","Максимум наручников","",""
+"CanHandcuffSheriff","可以给警长戴上手铐","Can Handcuff <color=#f8cd46>Sheriff</color>","Может надеть наручники на <color=#f8cd46>Шерифа</color>","",""
+"DeputyHandcuffedPlayer","被铐上手铐的目标","Handcuffed target","Цель в наручниках","",""
+"HandcuffedByDeputy","你被铐上了手铐！","You were handcuffed!","На вас были одеты наручники!","",""
+"DeputyInvalidTarget","目标不能戴手铐","Target cannot be handcuffed","На целе не могут быть надеты наручники","",""
+"DeputyHandcuffText","手铐","Handcuff","Наручник","",""
+"DeputyHandcuffCDForTarget","带手铐的玩家击杀冷却时间","Kill Cooldown for handcuffed player","Откат убийства у игроков с наручниками","",""
 
 "## 模组信息 / Mod Info"
 "DevAndSpnTitle","NTOHER大家族","NTOHER family","Семья NTOHER","NTOHER大家族","NTOHER大家族"

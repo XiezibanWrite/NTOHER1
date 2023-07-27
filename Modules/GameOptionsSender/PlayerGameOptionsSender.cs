@@ -108,6 +108,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 BountyHunter.ApplyGameOptions();
                 break;
             case CustomRoles.Sheriff:
+            case CustomRoles.Deputy:
             case CustomRoles.SwordsMan:
             case CustomRoles.Arsonist:
             case CustomRoles.Minimalism:

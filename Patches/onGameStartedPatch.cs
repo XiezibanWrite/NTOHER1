@@ -568,6 +568,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Deathpact:
                         Deathpact.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Deputy:
+                        Deputy.Add(pc.PlayerId);
+                        break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
                 {
