@@ -212,6 +212,9 @@ class HudManagerPatch
                     case CustomRoles.Deathpact:
                         __instance.AbilityButton.OverrideText(GetString("DeathpactButtonText"));
                         break;
+                    case CustomRoles.Deputy:
+                        __instance.KillButton.OverrideText(GetString("DeputyHandcuffText"));
+                        break;
                 }
 
                 //バウンティハンターのターゲットテキスト
@@ -372,6 +375,7 @@ class SetHudActivePatch
         switch (player.GetCustomRole())
         {
             case CustomRoles.Sheriff:
+            case CustomRoles.Deputy:
             case CustomRoles.SwordsMan:
             case CustomRoles.Arsonist:
             case CustomRoles.Innocent:

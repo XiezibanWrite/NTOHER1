@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "1.1.2";
+    public const string PluginVersion = "1.1.3.1";
     public const int PluginCreate = 5;
 
     public static readonly bool ShowQQButton = true;
@@ -294,6 +294,7 @@ public class Main : BasePlugin
                 {CustomRoles.Oracle, "#6666FF"},
                 {CustomRoles.Retributionist, "#228B22"},
                 {CustomRoles.TimeMaster, "#44baff"},
+                {CustomRoles.Deputy, "#df9026"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Vulture, "#824738"},
@@ -492,6 +493,7 @@ public enum CustomRoles
     Oracle,
     Retributionist,
     TimeMaster,
+    Deputy,
     //Neutral
     Arsonist,
     Jester,

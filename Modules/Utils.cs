@@ -390,6 +390,7 @@ public static class Utils
             case CustomRoles.Vulture:
             case CustomRoles.Amnesiac:
             case CustomRoles.Doomsayer:
+            case CustomRoles.Deputy:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -530,6 +531,9 @@ public static class Utils
             case CustomRoles.Doomsayer:
                 var doomsayerguess = Doomsayer.GuessedPlayerCount();
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Doomsayer).ShadeColor(0.25f), $"({doomsayerguess.Item1}/{doomsayerguess.Item2})"));
+                break;
+            case CustomRoles.Deputy:
+                ProgressText.Append(Deputy.GetHandcuffLimit());
                 break;
             default:
                 //タスクテキスト

@@ -95,6 +95,7 @@ internal static class CustomRolesHelper
                 CustomRoles.TimeMaster => CustomRoles.Engineer,
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 CustomRoles.Deathpact => CustomRoles.Shapeshifter,
+                CustomRoles.Deputy => CustomRoles.Crewmate,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -121,6 +122,7 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight => RoleTypes.Impostor,
             CustomRoles.Totocalcio => RoleTypes.Impostor,
             CustomRoles.Succubus => RoleTypes.Impostor,
+            CustomRoles.Deputy => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
@@ -165,6 +167,7 @@ internal static class CustomRolesHelper
             CustomRoles.Provocateur or
             CustomRoles.Lawyer or
             CustomRoles.Doomsayer or
+            CustomRoles.Deputy or
             CustomRoles.BloodKnight;
     }
     public static bool IsNeutralKilling(this CustomRoles role) //�Ƿ�а������������򵥶�ʤ����������
@@ -194,6 +197,7 @@ internal static class CustomRolesHelper
         return role is
             CustomRoles.SwordsMan or
             CustomRoles.Retributionist or
+            CustomRoles.Deputy or
             CustomRoles.Sheriff;
     }
     public static bool IsImpostor(this CustomRoles role) // �Ƿ��ڹ�
