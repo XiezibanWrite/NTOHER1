@@ -171,6 +171,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.DarkHide:
                 DarkHide.ApplyGameOptions(opt);
                 break;
+            case CustomRoles.NWitch:
+                NWitch.ApplyGameOptions(opt);
+                break;
             case CustomRoles.Workaholic:
                 AURoleOptions.EngineerCooldown = Options.WorkaholicVentCooldown.GetFloat();
                 AURoleOptions.EngineerInVentMaxTime = 0f;

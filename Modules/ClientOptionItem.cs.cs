@@ -65,7 +65,7 @@ public class ClientOptionItem
 
                 var modOptionsButton = Object.Instantiate(mouseMoveToggle, generalTab);
                 modOptionsButton.transform.localPosition = leaveButton?.transform?.localPosition ?? new(0f, -2.4f, 1f);
-                modOptionsButton.name = "TOHEOptions";
+                modOptionsButton.name = "NTOHEROptions";
                 modOptionsButton.Text.text = Translator.GetString("TOHEOptions");
                 modOptionsButton.Background.color = new Color32(255, 192, 203, byte.MaxValue);
                 var modOptionsPassiveButton = modOptionsButton.GetComponent<PassiveButton>();

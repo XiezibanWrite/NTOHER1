@@ -215,6 +215,9 @@ class HudManagerPatch
                     case CustomRoles.Deputy:
                         __instance.KillButton.OverrideText(GetString("DeputyHandcuffText"));
                         break;
+                    case CustomRoles.NWitch:
+                        __instance.KillButton.OverrideText($"{GetString("WitchControlButtonText")}");
+                        break;
                 }
 
                 //バウンティハンターのターゲットテキスト
@@ -385,6 +388,7 @@ class SetHudActivePatch
             case CustomRoles.Medicaler:
             case CustomRoles.Gamer:
             case CustomRoles.DarkHide:
+            case CustomRoles.NWitch:
             case CustomRoles.Provocateur:
                 __instance.SabotageButton.ToggleVisible(false);
                 __instance.AbilityButton.ToggleVisible(false);

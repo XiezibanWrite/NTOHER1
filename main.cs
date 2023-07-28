@@ -32,14 +32,14 @@ public class Main : BasePlugin
     public const string DebugKeySalt = "#59687b";
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "";
-    public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "1.1.3.1";
+    public const string PluginGuid = "com.DuyeYa.NewtownofhosteditedRoles";
+    public const string PluginVersion = "1.1.3";
     public const int PluginCreate = 5;
 
     public static readonly bool ShowQQButton = true;
     public static readonly string QQInviteUrl = "https://ve26043722-4.icoc.ws/";
     public static readonly bool ShowDiscordButton = true;
-    public static readonly string DiscordInviteUrl = "https://ve26043722-4.icoc.ws/";
+    public static readonly string DiscordInviteUrl = "https://github.com/DuyeYa/NTOHER1";
 
     public Harmony Harmony { get; } = new Harmony(PluginGuid);
     public static Version version = Version.Parse(PluginVersion);
@@ -186,6 +186,8 @@ public class Main : BasePlugin
         TName_Snacks_CN[IRandom.Instance.Next(0, TName_Snacks_CN.Count)] :
         TName_Snacks_EN[IRandom.Instance.Next(0, TName_Snacks_EN.Count)];
 
+    public static object TaglockedList { get; internal set; }
+
     public override void Load()
     {
         Instance = this;
@@ -322,6 +324,8 @@ public class Main : BasePlugin
                 {CustomRoles.Lawyer, "#949e52"},
                 {CustomRoles.Amnesiac, "#7FBFFF"},
                 {CustomRoles.Doomsayer, "#14f786"},
+                {CustomRoles.NWitch, "#BF5FFF"},
+                {CustomRoles.Pirate,"#EDC240"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -403,6 +407,16 @@ public class Main : BasePlugin
         else ConsoleManager.CreateConsole();
 
         TOHE.Logger.Msg("========= TOHE loaded! =========", "Plugin Load");
+    }
+
+    internal static bool ContainsValue(byte playerId)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal static bool ContainsKey(byte playerId)
+    {
+        throw new NotImplementedException();
     }
 }
 public enum CustomRoles
@@ -521,6 +535,8 @@ public enum CustomRoles
     Vulture,
     Amnesiac,
     Doomsayer,
+    NWitch,
+    Pirate,
 
     //SoloKombat
     KB_Normal,
@@ -590,6 +606,8 @@ public enum CustomWinner
     Succubus = CustomRoles.Succubus,
     Vulture = 517,
     Doomsayer = 518,
+    Witch = CustomRoles.NWitch,
+    Pirate = 519,
 }
 public enum AdditionalWinners
 {
@@ -604,6 +622,8 @@ public enum AdditionalWinners
     Totocalcio = CustomRoles.Totocalcio,
     Lawyer = CustomRoles.Lawyer,
     Doomsayer = CustomRoles.Doomsayer,
+    Witch = CustomRoles.NWitch,
+    Pirate = CustomRoles.Pirate,
 
 }
 public enum SuffixModes

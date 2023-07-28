@@ -453,10 +453,6 @@ internal class RPCHandlerPatch
             case CustomRPC.SetVultureArrow:
                 Vulture.ReceiveRPC(reader);
                 break;
-            case CustomRPC.KillFlash:
-                Utils.FlashColor(new(1f, 0f, 0f, 0.3f));
-                if (Constants.ShouldPlaySfx()) RPC.PlaySound(PlayerControl.LocalPlayer.PlayerId, Sounds.KillSound);
-                break;
             case CustomRPC.SyncPuppeteerList:
                 int pcount = reader.ReadInt32();
                 Main.PuppeteerList = new();
@@ -474,6 +470,10 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetDeputyHandcuffLimit:
                 Deputy.ReceiveRPC(reader);
+                break;
+            case CustomRPC.KillFlash:
+                Utils.FlashColor(new(1f, 0f, 0f, 0.3f));
+                if (Constants.ShouldPlaySfx()) RPC.PlaySound(PlayerControl.LocalPlayer.PlayerId, Sounds.KillSound);
                 break;
         }
     }
@@ -804,6 +804,12 @@ internal static class RPC
                 break;
             case CustomRoles.Deputy:
                 Deputy.Add(targetId);
+                break;
+            case CustomRoles.NWitch:
+                NWitch.Add(targetId);
+                break;
+            case CustomRoles.Pirate:
+                Pirate.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);
