@@ -209,7 +209,9 @@ internal class ChangeRoleSettings
             Oracle.Init();
             Doomsayer.Init();
             Deathpact.Init();
+            NWitch.Init();
             SoloKombatManager.Init();
+            Pirate.Init();
             CustomWinnerHolder.Reset();
             AntiBlackout.Reset();
             NameNotifyManager.Reset();
@@ -478,6 +480,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Medicaler:
                         Medicaler.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.NWitch:
+                        NWitch.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.Divinator:
                         Divinator.Add(pc.PlayerId);
                         break;
@@ -571,6 +576,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Deputy:
                         Deputy.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Pirate:
+                        Pirate.Add(pc.PlayerId);
+                        break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
                 {
@@ -621,7 +629,7 @@ internal class SelectRolesPatch
             }
 
             // ResetCamが必要なプレイヤーのリストにクラス化が済んでいない役職のプレイヤーを追加
-            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.Revolutionist or CustomRoles.Crewpostor or CustomRoles.KB_Normal).Select(p => p.PlayerId));
+            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Revolutionist or CustomRoles.Crewpostor or CustomRoles.KB_Normal).Select(p => p.PlayerId));
             Utils.CountAlivePlayers(true);
             Utils.SyncAllSettings();
             SetColorPatch.IsAntiGlitchDisabled = false;

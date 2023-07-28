@@ -20,7 +20,6 @@ public static class Vulture
     public static Dictionary<byte, int> BodyReportCount = new();
     public static Dictionary<byte, int> AbilityLeftInRound = new();
     public static Dictionary<byte, long> LastReport = new();
-
     public static OptionItem ArrowsPointingToDeadBody;
     public static OptionItem NumberOfReportsToWin;
     public static OptionItem CanVent;

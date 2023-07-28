@@ -56,7 +56,7 @@ public class MainMenuManagerPatch
             qqPassiveButton.OnClick = new();
             qqPassiveButton.OnClick.AddListener((Action)(() => Application.OpenURL(Main.QQInviteUrl)));
             qqPassiveButton.OnMouseOut.AddListener((Action)(() => qqButtonSprite.color = qqText.color = qqColor));
-            __instance.StartCoroutine(Effects.Lerp(0.01f, new Action<float>((p) => qqText.SetText("HMIC网站"))));
+            __instance.StartCoroutine(Effects.Lerp(0.01f, new Action<float>((p) => qqText.SetText("HMIC"))));
             qqButtonSprite.color = qqText.color = qqColor;
             qqButton.gameObject.SetActive(Main.ShowQQButton && !Main.IsAprilFools);
         }
@@ -68,13 +68,13 @@ public class MainMenuManagerPatch
             discordButton.transform.position = Vector3.Reflect(template.transform.position, Vector3.left);
 
             var discordText = discordButton.transform.GetChild(0).GetComponent<TMPro.TMP_Text>();
-            Color discordColor = new Color32(245, 245, 220, byte.MaxValue);
+            Color discordColor = new Color32(135, 206, 250, byte.MaxValue);
             PassiveButton discordPassiveButton = discordButton.GetComponent<PassiveButton>();
             SpriteRenderer discordButtonSprite = discordButton.GetComponent<SpriteRenderer>();
             discordPassiveButton.OnClick = new();
             discordPassiveButton.OnClick.AddListener((Action)(() => Application.OpenURL(Main.DiscordInviteUrl)));
             discordPassiveButton.OnMouseOut.AddListener((Action)(() => discordButtonSprite.color = discordText.color = discordColor));
-            __instance.StartCoroutine(Effects.Lerp(0.01f, new Action<float>((p) => discordText.SetText("HMIC网站"))));
+            __instance.StartCoroutine(Effects.Lerp(0.01f, new Action<float>((p) => discordText.SetText("MOD"))));
             discordButtonSprite.color = discordText.color = discordColor;
             discordButton.gameObject.SetActive(Main.ShowDiscordButton && !Main.IsAprilFools);
         }
@@ -106,7 +106,7 @@ public class MainMenuManagerPatch
             if (freeplayButton != null)
             {
                 freeplayButton.GetComponent<PassiveButton>().OnClick = new();
-                freeplayButton.GetComponent<PassiveButton>().OnClick.AddListener((Action)(() => Application.OpenURL("https://tohe.cc")));
+                freeplayButton.GetComponent<PassiveButton>().OnClick.AddListener((Action)(() => Application.OpenURL("https://b23.tv/yVqP3ES")));
                 __instance.StartCoroutine(Effects.Lerp(0.01f, new Action<float>((p) => freeplayButton.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().SetText(Translator.GetString("Website")))));
             }
 #endif

@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using TOHE.Modules;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
+using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
 
@@ -39,6 +40,7 @@ internal class ChatCommands
         if (Mediumshiper.MsMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (MafiaRevengeManager.MafiaMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (Councillor.MurderMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
+        if (Pirate.DuelCheckMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (RetributionistRevengeManager.RetributionistMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
         switch (args[0])
         {
@@ -612,6 +614,7 @@ internal class ChatCommands
         if (Mediumshiper.MsMsg(player, text)) return;
         if (MafiaRevengeManager.MafiaMsgCheck(player, text)) return;
         if (Councillor.MurderMsg(player, text)) { canceled = true; return; }
+        if (Pirate.DuelCheckMsg(player, text)) { canceled = true; return; }
         if (RetributionistRevengeManager.RetributionistMsgCheck(player, text)) return;
         switch (args[0])
         {

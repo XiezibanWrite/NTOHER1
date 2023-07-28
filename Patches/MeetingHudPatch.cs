@@ -581,6 +581,7 @@ class MeetingHudStartPatch
         Main.CyberStarDead.Clear();
         Main.DetectiveNotify.Clear();
         Mortician.msgToSend.Clear();
+        Pirate.OnMeetingStart();
     }
     public static void Prefix(MeetingHud __instance)
     {
@@ -764,7 +765,7 @@ class MeetingHudStartPatch
                     case CustomRoles.Lovers:
                         if (seer.Is(CustomRoles.Lovers) || seer.Data.IsDead)
                         {
-                            sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♡"));
+                            sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
                             isLover = true;
                         }
                         break;
@@ -773,9 +774,9 @@ class MeetingHudStartPatch
 
             //海王相关显示
             if ((seer.Is(CustomRoles.Ntr) || target.Is(CustomRoles.Ntr)) && !seer.Data.IsDead && !isLover)
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♡"));
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
             else if (seer == target && CustomRolesHelper.RoleExist(CustomRoles.Ntr) && !isLover)
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♡"));
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
 
             //呪われている場合
             sb.Append(Witch.GetSpelledMark(target.PlayerId, true));

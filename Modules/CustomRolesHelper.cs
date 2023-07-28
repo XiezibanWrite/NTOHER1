@@ -96,6 +96,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 CustomRoles.Deathpact => CustomRoles.Shapeshifter,
                 CustomRoles.Deputy => CustomRoles.Crewmate,
+                CustomRoles.NWitch => CustomRoles.Impostor,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -123,6 +124,8 @@ internal static class CustomRolesHelper
             CustomRoles.Totocalcio => RoleTypes.Impostor,
             CustomRoles.Succubus => RoleTypes.Impostor,
             CustomRoles.Deputy => RoleTypes.Impostor,
+            CustomRoles.NWitch => RoleTypes.Impostor,
+            CustomRoles.Pirate => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
@@ -168,6 +171,8 @@ internal static class CustomRolesHelper
             CustomRoles.Lawyer or
             CustomRoles.Doomsayer or
             CustomRoles.Deputy or
+            CustomRoles.NWitch or
+            CustomRoles.Pirate or
             CustomRoles.BloodKnight;
     }
     public static bool IsNeutralKilling(this CustomRoles role) //�Ƿ�а������������򵥶�ʤ����������
@@ -190,6 +195,8 @@ internal static class CustomRolesHelper
             CustomRoles.Succubus or
             CustomRoles.Vulture or
             CustomRoles.Doomsayer or
+            CustomRoles.NWitch or
+            CustomRoles.Pirate or
             CustomRoles.Lawyer;
     }
     public static bool IsCK(this CustomRoles role) // �Ƿ������Ա
@@ -246,6 +253,7 @@ internal static class CustomRolesHelper
             CustomRoles.Swooper or
             CustomRoles.Councillor or
             CustomRoles.Deathpact or
+            CustomRoles.NWitch or
             CustomRoles.Crewpostor;     
     }
     public static bool IsNeutral(this CustomRoles role) // �Ƿ�����
@@ -279,6 +287,8 @@ internal static class CustomRolesHelper
             CustomRoles.Lawyer or
             CustomRoles.Vulture or
             CustomRoles.Doomsayer or
+            CustomRoles.NWitch or
+            CustomRoles.Pirate or
             CustomRoles.Succubus;
     }
     public static bool CheckAddonConfilct(CustomRoles role, PlayerControl pc)
@@ -425,4 +435,6 @@ public enum CountTypes
     Gamer,
     BloodKnight,
     Succubus,
+    NWitch,
+
 }

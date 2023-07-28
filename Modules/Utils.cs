@@ -391,6 +391,8 @@ public static class Utils
             case CustomRoles.Amnesiac:
             case CustomRoles.Doomsayer:
             case CustomRoles.Deputy:
+            case CustomRoles.NWitch:
+            case CustomRoles.Pirate:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -534,6 +536,9 @@ public static class Utils
                 break;
             case CustomRoles.Deputy:
                 ProgressText.Append(Deputy.GetHandcuffLimit());
+                break;
+            case CustomRoles.Pirate:
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Pirate).ShadeColor(0.25f), $"({Pirate.NumWin}/{Pirate.SuccessfulDuelsToWin.GetInt()})"));
                 break;
             default:
                 //タスクテキスト
@@ -1019,7 +1024,7 @@ public static class Utils
             SelfMark.Append(Snitch.GetWarningArrow(seer));
 
             //ハートマークを付ける(自分に)
-            if (seer.Is(CustomRoles.Lovers) || CustomRolesHelper.RoleExist(CustomRoles.Ntr)) SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Lovers), "♡"));
+            if (seer.Is(CustomRoles.Lovers) || CustomRolesHelper.RoleExist(CustomRoles.Ntr)) SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Lovers), "♥"));
 
             //呪われている場合
             SelfMark.Append(Witch.GetSpelledMark(seer.PlayerId, isForMeeting));
@@ -1150,16 +1155,16 @@ public static class Utils
                 //ハートマークを付ける(相手に)
                 if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
                 {
-                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
                 //霊界からラバーズ視認
                 else if (seer.Data.IsDead && !seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
                 {
-                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
                 else if (target.Is(CustomRoles.Ntr) || seer.Is(CustomRoles.Ntr))
                 {
-                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
 
                 if (seer.Is(CustomRoles.Arsonist))//seerがアーソニストの時
@@ -1191,6 +1196,10 @@ public static class Utils
                 Main.PuppeteerList.ContainsValue(seer.PlayerId) &&
                 Main.PuppeteerList.ContainsKey(target.PlayerId))
                     TargetMark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Impostor)}>◆</color>");
+                if (seer.Is(CustomRoles.NWitch) &&
+                Main.ContainsValue(seer.PlayerId) &&
+                Main.ContainsKey(target.PlayerId))
+                    TargetMark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.NWitch)}>◆</color>");
 
                 //他人の役職とタスクは幽霊が他人の役職を見れるようになっていてかつ、seerが死んでいる場合のみ表示されます。それ以外の場合は空になります。
                 string TargetRoleText =
@@ -1314,6 +1323,7 @@ public static class Utils
         EvilTracker.AfterMeetingTasks();
         SerialKiller.AfterMeetingTasks();
         Vulture.AfterMeetingTasks();
+        Pirate.AfterMeetingTask();
         if (Options.AirShipVariableElectrical.GetBool())
             AirShipElectricalDoors.Initialize();
     }
@@ -1419,7 +1429,7 @@ public static class Utils
     {
         string f = $"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/TOHE-logs/";
         string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
-        string filename = $"{f}TOHE-v{Main.PluginVersion}-{t}.log";
+        string filename = $"{f}NTOHER-v{Main.PluginVersion}-{t}.log";
         if (!Directory.Exists(f)) Directory.CreateDirectory(f);
         FileInfo file = new(@$"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
         file.CopyTo(@filename);

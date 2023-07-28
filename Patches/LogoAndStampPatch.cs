@@ -40,10 +40,10 @@ public static class CredentialsPatch
             DevsData = "";
             TransData = "";
 
-            DevsData += $"<color={Main.ModColor}>♡咔皮呆</color> - <size=75%>{GetString("MainDev")}</size>";
-            DevsData += $"\n<color={Main.ModColor}>♡毒液</color> - <size=75%>{GetString("MainDev")}</size>";
-            DevsData += $"\n<color={Main.ModColor}>♡IRIDESCENT</color> - <size=75%>{GetString("Art")}</size>";
-            DevsData += $"\n<color={Main.ModColor}>♡艾格</color> - <size=75%>{GetString("Art")}</size>";
+            DevsData += $"<color={Main.ModColor}>♥咔皮呆</color> - <size=75%>{GetString("MainDev")}</size>";
+            DevsData += $"\n<color={Main.ModColor}>♥毒液</color> - <size=75%>{GetString("MainDev")}</size>";
+            DevsData += $"\n<color={Main.ModColor}>♥IRIDESCENT</color> - <size=75%>{GetString("Art")}</size>";
+            DevsData += $"\n<color={Main.ModColor}>♥艾格</color> - <size=75%>{GetString("Art")}</size>";
             DevsData += $"\n<color=#F08080>Night瓜 - <size=75%>{GetString("contributor")}</size></color>";
             DevsData += $"\nEndrmen40409 - <size=75%>{GetString("Art")}</size>";
             DevsData += $"\nNCSIMON - <size=75%>{GetString("RoleDev")}</size>";
