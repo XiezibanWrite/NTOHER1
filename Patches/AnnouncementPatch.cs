@@ -45,9 +45,29 @@ public class ModNewsHistory
     // 
     public static void Init()
     {
-        // When creating new news, you can not delete old news
+        // 创建新公告时，不能删除旧公告
         {
-                             
+
+            // NTOHER v1.1.3
+            var news = new ModNews
+            {
+                Number = 100003,
+                Title = "NewTownOfHostEditedRolesv1.1.3",
+                SubTitle = "★★★★专注绘制图标★★★★",
+                ShortTitle = "★NTOHER v1.1.3",
+                Text = "<size=100%>欢迎来到 NTOHER v1.1.3.</size>\n\n<size=125%>适配Among us6.27</size>\n"
+                    + "\n【声明】## -本模组不隶属于Amongus或Innersloth LLC\n其中包含的内容未得到Innersloth LLC的认可或以其他方式赞助\n此处包含的部分材料是Innersloth LLC的财产\nInnersloth©有限责任公司 "
+                    + "\n【对应官方版本】\n - TOH v5.0.0\r\n - TOHE v2.3.5\r\n"
+                    + "\n【更正】\n -马里奥，夺魂者，赏金猎人，警长，时间之主，失忆者，死亡契约增添图标"
+                    + "\n【修复】\n -修复秃鹫"
+                    + "\n【新职业】\n ##中立阵营 \n - 挑战者"
+                    + "\n【鸣谢】\n-乐崽——封装 \n-艾格——美工 \nNight_瓜——贡献者(给予帮助)",
+                Date = "2023-7-30T00:00:00Z",
+            };
+            AllModNews.Add(news);
+        }
+
+        {
             // NTOHER v1.1.2
             var news = new ModNews
             {

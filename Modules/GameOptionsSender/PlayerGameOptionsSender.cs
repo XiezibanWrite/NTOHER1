@@ -118,7 +118,6 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Medicaler:
             case CustomRoles.Provocateur:
             case CustomRoles.Amnesiac:
-            case CustomRoles.Vulture:
                 opt.SetVision(false);
                 break;
             case CustomRoles.Zombie:
@@ -221,6 +220,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Deathpact:
                 Deathpact.ApplyGameOptions();
+                break;
+            case CustomRoles.Vulture:
+                Vulture.ApplyGameOptions(opt);
+                AURoleOptions.EngineerCooldown = 0f;
+                AURoleOptions.EngineerInVentMaxTime = 0f;
                 break;
         }
 

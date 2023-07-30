@@ -1483,7 +1483,7 @@ SidekickInfoLong","(中立职业):\n仅剩变节者阵营与船员阵营且变�
 "VultureEatButtonText","吃","Consume","СЪЕСТЬ","",""
 "VultureReportCooldown","吃尸体的冷却时间","Eat Cooldown","Откат съедения","",""
 "VultureMaxEatenInOneRound","每回合可能吃掉的最大尸体数","Maximum eaten bodies possible per round","Максимум трупов которые он может съесть","",""
-"VultureCooldownUp","吃完后的冷却时间","Eat Cooldown finished","Откат съедения завершён","",""
+"VultureCooldownUp","可以继续吃了","Eat Cooldown finished","Откат съедения завершён","",""
 
 "## 神谕设置 / Oracle Text Strings"
 "OracleSkillLimit","最大使用量","Maximum Uses","Максимум использований","",""
@@ -1528,17 +1528,6 @@ SidekickInfoLong","(中立职业):\n仅剩变节者阵营与船员阵营且变�
 "RetributionistKillTooManyDead","有太多玩家死亡，您无法重试","Too many players are dead, you can't retribute.","","",""
 "MinimumPlayersAliveToRetri","阻止复仇所需的最大玩家数","Maximum players needed to block retributions","","",""
 "RetributionistRevengeTitle","【 ★ 惩罚者的复仇 ★ 】","【 ★ NEWS ★ 】","【 ★ НОВОСТИ ★ 】","【 ★ 特供情报 ★ 】",""
-"GanRetributionistCanBeMadmate","可以招募<color=#228B22>惩罚者</color>",
-"RetributionistCanBeMadmate","<color=#228B22>惩罚者</color>可以成为<color=#ff1919>叛徒</color>","
-
-"## 预言家设置"
-"FarseerRevealCooldown","<color=#BA55D3>预言</color>冷却","<color=#BA55D3>Reveal</color> Cooldown","Откат раскрытия","",""
-"FarseerRevealTime","<color=#BA55D3>预言</color>时间","<color=#BA55D3>Reveal</color> Time","Время раскрытия","",""
-"FarseerVision","<color=#BA55D3>预言家</color>的视野","<color=#BA55D3>Overseer</color> Vision","Обзор <color=#BA55D3>Смотрителя</color>","",""
-"FarseerKillButtonText","预言","Reveal","РАСКРЫТЬ","",""
-"FarseerCanBeMadmate","<color=#BA55D3>预言家</color>可以成为<color=#ff1919>叛徒</color>","<color=#BA55D3>Overseer</color> can become <color=#ff1919>Madmate</color>","<color=#BA55D3>Смотритель</color> может стать <color=#ff1919>Безумцем</color>","",""
-"RetributionistCanBeMadmate","<color=#228B22>惩罚者</color>可以成为<color=#ff1919>叛徒</color>","<color=#228B22>Retributionist</color> can become <color=#ff1919>Madmate</color>","<color=#228B22>Возмездник</color> может стать <color=#ff1919>Безумцем</color>","",""
-"GanFarseerCanBeMadmate","可以招募<color=#BA55D3>预言家</color>","<color=#BA55D3>Overseer</color> can be converted","<color=#BA55D3>Смотритель</color> может быть превращен","",""
 
 "## 时间之主设置"
 "TimeMasterSkillDuration","<color=#44baff>时间护盾</color>的持续时间","<color=#44baff>Time Shield</color> Duration","","",""
