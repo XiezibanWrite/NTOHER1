@@ -17,7 +17,7 @@ public static class HudSpritePatch
     private static Sprite Kill;
     private static Sprite Ability;
     private static Sprite Vent;
-    public static Sprite newReportButton { get; private set; }
+    private static Sprite Report;
     public static void Postfix(HudManager __instance)
     {
         var player = PlayerControl.LocalPlayer;
@@ -28,6 +28,7 @@ public static class HudSpritePatch
             Kill = null;
             Ability = null;
             Vent = null;
+            Report = null;
             return;
         }
 
@@ -36,10 +37,12 @@ public static class HudSpritePatch
         if (!Kill) Kill = __instance.KillButton.graphic.sprite;
         if (!Ability) Ability = __instance.AbilityButton.graphic.sprite;
         if (!Vent) Vent = __instance.ImpostorVentButton.graphic.sprite;
+        if (!Report) Report = __instance.ReportButton.graphic.sprite;
 
         Sprite newKillButton = Kill;
         Sprite newAbilityButton = Ability;
         Sprite newVentButton = Vent;
+        Sprite newReportButton = Report;
 
         if (!Main.EnableCustomButton.Value) goto EndOfSelectImg;
 
@@ -74,6 +77,12 @@ public static class HudSpritePatch
                 break;
             case CustomRoles.Hacker:
                 newAbilityButton = CustomButton.Get("Hack");
+                break;
+            case CustomRoles.SoulCatcher:
+                newAbilityButton = CustomButton.Get("Teleport");
+                break;
+            case CustomRoles.BountyHunter:
+                newAbilityButton = CustomButton.Get("Handoff");
                 break;
             case CustomRoles.Hangman:
                 if (shapeshifting) newAbilityButton = CustomButton.Get("Hangman");
@@ -119,7 +128,13 @@ public static class HudSpritePatch
                 break;
             case CustomRoles.TimeMaster:
                 newAbilityButton = CustomButton.Get("Time Master");
-                break;                
+                break;
+            case CustomRoles.Mario:
+                newAbilityButton = CustomButton.Get("Happy");
+                break;
+            case CustomRoles.Mayor:
+                newAbilityButton = CustomButton.Get("Collective");
+                break;
             case CustomRoles.Deathpact:
                 newAbilityButton = CustomButton.Get("Deathpact");
                 break;

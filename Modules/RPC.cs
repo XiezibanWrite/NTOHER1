@@ -91,7 +91,6 @@ enum CustomRPC
     SyncKBPlayer,
     SyncKBBackCountdown,
     SyncKBNameNotify,
-    Vulture,
     MeetingKill,
     SetRememberLimit,
 }
