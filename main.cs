@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "";
     public const string PluginGuid = "com.DuyeYa.NewtownofhosteditedRoles";
-    public const string PluginVersion = "1.1.3";
+    public const string PluginVersion = "11.45.14";
     public const int PluginCreate = 5;
 
     public static readonly bool ShowQQButton = true;
@@ -575,6 +575,7 @@ public enum CustomRoles
     Sidekick,
     Soulless,
     Pestilence,
+    SoulCatcher,
 }
 //WinData
 public enum CustomWinner

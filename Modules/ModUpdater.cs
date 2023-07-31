@@ -228,12 +228,12 @@ public class ModUpdater
                 JArray assets = data["assets"].Cast<JArray>();
                 for (int i = 0; i < assets.Count; i++)
                 {
-                    if (assets[i]["name"].ToString() == "TOHE_Steam.dll" && Constants.GetPlatformType() == Platforms.StandaloneSteamPC)
+                    if (assets[i]["name"].ToString() == "NTOHER_Steam.dll" && Constants.GetPlatformType() == Platforms.StandaloneSteamPC)
                     {
                         downloadUrl = assets[i]["browser_download_url"].ToString();
                         break;
                     }
-                    if (assets[i]["name"].ToString() == "TOHE_Epic.dll" && Constants.GetPlatformType() == Platforms.StandaloneEpicPC)
+                    if (assets[i]["name"].ToString() == "NTOHER_Epic.dll" && Constants.GetPlatformType() == Platforms.StandaloneEpicPC)
                     {
                         downloadUrl = assets[i]["browser_download_url"].ToString();
                         break;

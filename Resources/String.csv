@@ -1390,7 +1390,7 @@ SidekickInfoLong","(中立职业):\n仅剩变节者阵营与船员阵营且变�
 "KBDisplayScore","第{0}名：{1}分","Ranking: {0} Score: {1}","Место: {1} Счёт: {1}","第{0}名:{1}分","第{0}名：{1}分"
 "KBTimeRemain","剩余时间：{0} 秒","Time Remaining: {0} second(s)","Осталось времени: {0} секунд","剩餘時間:{0} 秒","剩余时间：{0} 秒"
 "GameOver","游戏结束","Game Over","Конец игры","遊戲結束","游戏结束"
-"TOHEOptions","NTOHER 选项","NTOHER Options","Настройки NTOHER ","NTOHER 設定","NTOHER 选项"
+"NTOHEROptions","NTOHER 选项","NTOHER Options","Настройки NTOHER ","NTOHER 設定","NTOHER 选项"
 "Back","返回","Back","Назад","返回","返回"
 "Yes","是","Yes","Да","是","是"
 "No","否","No","Нет","否","否"

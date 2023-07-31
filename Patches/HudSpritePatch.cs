@@ -17,7 +17,7 @@ public static class HudSpritePatch
     private static Sprite Kill;
     private static Sprite Ability;
     private static Sprite Vent;
-    public static Sprite Report;
+    private static Sprite Report;
     public static void Postfix(HudManager __instance)
     {
         var player = PlayerControl.LocalPlayer;
@@ -78,6 +78,12 @@ public static class HudSpritePatch
             case CustomRoles.Hacker:
                 newAbilityButton = CustomButton.Get("Hack");
                 break;
+            case CustomRoles.SoulCatcher:
+                newAbilityButton = CustomButton.Get("Teleport");
+                break;
+            case CustomRoles.BountyHunter:
+                newAbilityButton = CustomButton.Get("Handoff");
+                break;
             case CustomRoles.Hangman:
                 if (shapeshifting) newAbilityButton = CustomButton.Get("Hangman");
                 break;
@@ -122,7 +128,13 @@ public static class HudSpritePatch
                 break;
             case CustomRoles.TimeMaster:
                 newAbilityButton = CustomButton.Get("Time Master");
-                break;                
+                break;
+            case CustomRoles.Mario:
+                newAbilityButton = CustomButton.Get("Happy");
+                break;
+            case CustomRoles.Mayor:
+                newAbilityButton = CustomButton.Get("Collective");
+                break;
             case CustomRoles.Deathpact:
                 newAbilityButton = CustomButton.Get("Deathpact");
                 break;
