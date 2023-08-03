@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "";
     public const string PluginGuid = "com.DuyeYa.NewtownofhosteditedRoles";
-    public const string PluginVersion = "11.45.14";
+    public const string PluginVersion = "1.1.5";
     public const int PluginCreate = 5;
 
     public static readonly bool ShowQQButton = true;
@@ -323,9 +323,9 @@ public class Main : BasePlugin
                 {CustomRoles.Succubus, "#ff00ff"},
                 {CustomRoles.Lawyer, "#949e52"},
                 {CustomRoles.Amnesiac, "#7FBFFF"},
-                {CustomRoles.Doomsayer, "#14f786"},
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Pirate,"#EDC240"},
+                {CustomRoles.Amor, "#ee3377"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -534,9 +534,9 @@ public enum CustomRoles
     Lawyer,
     Vulture,
     Amnesiac,
-    Doomsayer,
     NWitch,
     Pirate,
+    Amor,
 
     //SoloKombat
     KB_Normal,
@@ -570,12 +570,6 @@ public enum CustomRoles
     Bait,
     Trapper,
     Autopsy,
-    Pursuer,
-    Maverick,
-    Sidekick,
-    Soulless,
-    Pestilence,
-    SoulCatcher,
 }
 //WinData
 public enum CustomWinner
@@ -608,7 +602,6 @@ public enum CustomWinner
     Witch = CustomRoles.NWitch,
     Pirate = 519,
     Vulture = 520,
-    Doomsayer = 521,
 }
 public enum AdditionalWinners
 {
@@ -622,9 +615,9 @@ public enum AdditionalWinners
     Sunnyboy = CustomRoles.Sunnyboy,
     Totocalcio = CustomRoles.Totocalcio,
     Lawyer = CustomRoles.Lawyer,
-    Doomsayer = CustomRoles.Doomsayer,
     Witch = CustomRoles.NWitch,
     Pirate = CustomRoles.Pirate,
+    Amor = CustomRoles.Amor
 
 }
 public enum SuffixModes

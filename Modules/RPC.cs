@@ -84,7 +84,6 @@ enum CustomRPC
     SyncCurseAndKill,
     SetVultureArrow,
     RetributionistRevenge,
-    SetDoomsayerProgress,
     SetDeputyHandcuffLimit,
 
     //SoloKombat
@@ -93,6 +92,7 @@ enum CustomRPC
     SyncKBNameNotify,
     MeetingKill,
     SetRememberLimit,
+    SetAmorMatchmakeLimit,
 }
 public enum Sounds
 {
@@ -464,15 +464,15 @@ internal class RPCHandlerPatch
                 for (int i = 0; i < ccount; i++)
                     Main.isCurseAndKill.Add(reader.ReadByte(), reader.ReadBoolean());
                 break;
-            case CustomRPC.SetDoomsayerProgress:
-                Doomsayer.ReceiveRPC();
-                break;
             case CustomRPC.SetDeputyHandcuffLimit:
                 Deputy.ReceiveRPC(reader);
                 break;
             case CustomRPC.KillFlash:
                 Utils.FlashColor(new(1f, 0f, 0f, 0.3f));
                 if (Constants.ShouldPlaySfx()) RPC.PlaySound(PlayerControl.LocalPlayer.PlayerId, Sounds.KillSound);
+                break;
+            case CustomRPC.SetAmorMatchmakeLimit:
+                Amor.ReceiveRPC(reader);
                 break;
         }
     }
@@ -795,9 +795,6 @@ internal static class RPC
             case CustomRoles.Councillor:
                 Councillor.Add(targetId);
                 break;
-            case CustomRoles.Doomsayer:
-                Doomsayer.Add(targetId);
-                break;
             case CustomRoles.Deathpact:
                 Deathpact.Add(targetId);
                 break;
@@ -809,6 +806,9 @@ internal static class RPC
                 break;
             case CustomRoles.Pirate:
                 Pirate.Add(targetId);
+                break;
+            case CustomRoles.Amor:
+                Amor.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

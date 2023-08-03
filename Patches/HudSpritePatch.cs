@@ -66,7 +66,7 @@ public static class HudSpritePatch
                 newAbilityButton = CustomButton.Get("Camo");
                 break;
             case CustomRoles.Arsonist:
-                newKillButton = CustomButton.Get("X");
+                newKillButton = CustomButton.Get("Douse");
                 if (player.IsDouseDone()) newVentButton = CustomButton.Get("Ignite");
                 break;
             case CustomRoles.FireWorks:
@@ -77,9 +77,6 @@ public static class HudSpritePatch
                 break;
             case CustomRoles.Hacker:
                 newAbilityButton = CustomButton.Get("Hack");
-                break;
-            case CustomRoles.SoulCatcher:
-                newAbilityButton = CustomButton.Get("Teleport");
                 break;
             case CustomRoles.BountyHunter:
                 newAbilityButton = CustomButton.Get("Handoff");
@@ -96,14 +93,14 @@ public static class HudSpritePatch
             case CustomRoles.Medicaler:
                 newKillButton = CustomButton.Get("Shield");
                 break;
-            case CustomRoles.Gangster:
-                if (Gangster.CanRecruit(player.PlayerId)) newKillButton = CustomButton.Get("Sidekick");
-                break;
             case CustomRoles.Succubus:
                 newKillButton = CustomButton.Get("Subbus");
                 break;
             case CustomRoles.Innocent:
                 newKillButton = CustomButton.Get("Suidce");
+                break;
+            case CustomRoles.Pirate:
+                newKillButton = CustomButton.Get("Challenge");
                 break;
             case CustomRoles.EvilTracker:
                 newAbilityButton = CustomButton.Get("Track");
