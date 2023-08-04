@@ -287,6 +287,9 @@ class CheckMurderPatch
                     if (!Pirate.OnCheckMurder(killer, target))
                         return false;
                     break;
+                case CustomRoles.Amor:
+                    Amor.OnCheckMurder(killer, target);
+                    return false;
 
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:
@@ -310,7 +313,7 @@ class CheckMurderPatch
                     {
                         foreach (var player in Main.AllPlayerControls)
                         {
-                            if (!killer.Is(CustomRoles.Pestilence))
+                           
                         {
                             if (Main.TimeMasterBackTrack.ContainsKey(player.PlayerId))
                             {
@@ -1041,7 +1044,6 @@ class ReportDeadBodyPatch
         Hacker.OnReportDeadBody();
         Judge.OnReportDeadBody();
         Greedier.OnReportDeadBody();
-        Doomsayer.OnReportDeadBody();
         Deathpact.OnReportDeadBody();
         Mortician.OnReportDeadBody(player, target);
         Mediumshiper.OnReportDeadBody(target);
@@ -1368,7 +1370,11 @@ class FixedUpdatePatch
 
                 if (GameStates.IsInTask && player.IsAlive() && Options.LadderDeath.GetBool()) FallFromLadder.FixedUpdate(player);
 
-                if (GameStates.IsInGame) LoversSuicide();
+                if (GameStates.IsInGame)
+                {
+                    LoversSuicide();
+                    Amor.CheckLoversSuicide();
+                }
 
                 #region 傀儡师处理
                 if (GameStates.IsInTask && Main.PuppeteerList.ContainsKey(player.PlayerId))
@@ -1474,9 +1480,7 @@ class FixedUpdatePatch
                 if (__instance.AmOwner) RoleText.enabled = true; //自分ならロールを表示
                 else if (Options.CurrentGameMode == CustomGameMode.SoloKombat) RoleText.enabled = true;
                 else if (Main.VisibleTasksCount && PlayerControl.LocalPlayer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) RoleText.enabled = true; //他プレイヤーでVisibleTasksCountが有効なおかつ自分が死んでいるならロールを表示
-                else if (__instance.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosImp.GetBool()) RoleText.enabled = true;
+                else if (__instance.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool() && Amor.IsLoverPair(__instance, PlayerControl.LocalPlayer)) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Madmate) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowWhosMadmate.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Madmate) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) RoleText.enabled = true;
@@ -1486,6 +1490,7 @@ class FixedUpdatePatch
                 else if (Amnesiac.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.GM)) RoleText.enabled = true;
                 else if (Main.GodMode.Value) RoleText.enabled = true;
+                else if (Amor.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else RoleText.enabled = false; //そうでなければロールを非表示
                 if (!AmongUsClient.Instance.IsGameStarted && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
                 {
@@ -1607,7 +1612,7 @@ class FixedUpdatePatch
                     Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.BallLightning), "■"));
 
                 //ハートマークを付ける(会議中MOD視点)
-                if (__instance.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Is(CustomRoles.Lovers))
+                if (__instance.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Is(CustomRoles.Lovers) && Amor.IsLoverPair(__instance, PlayerControl.LocalPlayer))
                 {
                     Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
@@ -1637,7 +1642,7 @@ class FixedUpdatePatch
 
                 if (Vulture.ArrowsPointingToDeadBody.GetBool())
                     Suffix.Append(Vulture.GetTargetArrow(seer, target));
-
+                if (seer.Is(CustomRoles.Amor)) Mark.Append(Amor.GetLoversMark(seer, target));
                 if (GameStates.IsInTask && seer.Is(CustomRoles.AntiAdminer))
                 {
                     AntiAdminer.FixedUpdate();

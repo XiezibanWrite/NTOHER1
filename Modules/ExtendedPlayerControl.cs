@@ -464,6 +464,7 @@ static class ExtendedPlayerControl
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
 
             CustomRoles.Arsonist => pc.IsDouseDone(),
+            CustomRoles.Amor => pc.IsAlive(),
             CustomRoles.Revolutionist => pc.IsDrawDone(),
 
             //SoloKombat
@@ -623,6 +624,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.NWitch:
                 NWitch.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Amor:
+                Amor.SetCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)

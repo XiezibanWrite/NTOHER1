@@ -67,7 +67,7 @@ public class ClientOptionItem
                 modOptionsButton.transform.localPosition = leaveButton?.transform?.localPosition ?? new(0f, -2.4f, 1f);
                 modOptionsButton.name = "NTOHEROptions";
                 modOptionsButton.Text.text = Translator.GetString("NTOHEROptions");
-                modOptionsButton.Background.color = new Color32(255, 192, 203, byte.MaxValue);
+                modOptionsButton.Background.color = new Color32(30, 144, 255, byte.MaxValue);
                 var modOptionsPassiveButton = modOptionsButton.GetComponent<PassiveButton>();
                 modOptionsPassiveButton.OnClick = new();
                 modOptionsPassiveButton.OnClick.AddListener(new Action(() =>
@@ -116,7 +116,7 @@ public class ClientOptionItem
     {
         if (ToggleButton == null) return;
 
-        var color = Config.Value ? new Color32(255, 192, 203, byte.MaxValue) : new Color32(77, 77, 77, byte.MaxValue);
+        var color = Config.Value ? new Color32(30, 144, 255, byte.MaxValue) : new Color32(77, 77, 77, byte.MaxValue);
         ToggleButton.Background.color = color;
         ToggleButton.Rollover?.ChangeOutColor(color);
     }

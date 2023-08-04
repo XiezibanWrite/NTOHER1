@@ -389,10 +389,10 @@ public static class Utils
             case CustomRoles.Succubus:
             case CustomRoles.Vulture:
             case CustomRoles.Amnesiac:
-            case CustomRoles.Doomsayer:
             case CustomRoles.Deputy:
             case CustomRoles.NWitch:
             case CustomRoles.Pirate:
+            case CustomRoles.Amor:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -530,15 +530,14 @@ public static class Utils
             case CustomRoles.Vulture:
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Vulture).ShadeColor(0.25f), $"({(Vulture.BodyReportCount.TryGetValue(playerId, out var count1) ? count1 : 0)}/{Vulture.NumberOfReportsToWin.GetInt()})"));
                 break;
-            case CustomRoles.Doomsayer:
-                var doomsayerguess = Doomsayer.GuessedPlayerCount();
-                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Doomsayer).ShadeColor(0.25f), $"({doomsayerguess.Item1}/{doomsayerguess.Item2})"));
-                break;
             case CustomRoles.Deputy:
                 ProgressText.Append(Deputy.GetHandcuffLimit());
                 break;
             case CustomRoles.Pirate:
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Pirate).ShadeColor(0.25f), $"({Pirate.NumWin}/{Pirate.SuccessfulDuelsToWin.GetInt()})"));
+                break;
+            case CustomRoles.Amor:
+                ProgressText.Append(Amor.GetMatchmakeLimit());
                 break;
             default:
                 //タスクテキスト
@@ -568,6 +567,12 @@ public static class Utils
 
         return ProgressText.ToString();
     }
+
+    private static string ColorString(Color color)
+    {
+        throw new NotImplementedException();
+    }
+
     public static void ShowActiveSettingsHelp(byte PlayerId = byte.MaxValue)
     {
         SendMessage(GetString("CurrentActiveSettingsHelp") + ":", PlayerId);
@@ -1153,7 +1158,7 @@ public static class Utils
                 TargetMark.Append(Snitch.GetWarningMark(seer, target));
 
                 //ハートマークを付ける(相手に)
-                if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
+                if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers) && Amor.IsLoverPair(seer, target))
                 {
                     TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
@@ -1204,7 +1209,7 @@ public static class Utils
                 //他人の役職とタスクは幽霊が他人の役職を見れるようになっていてかつ、seerが死んでいる場合のみ表示されます。それ以外の場合は空になります。
                 string TargetRoleText =
                     (seer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) ||
-                    (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool()) ||
+                    (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool() && Amor.IsLoverPair(seer, target)) ||
                     (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) ||
                     (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoleTypes.Impostor) && Options.MadmateKnowWhosImp.GetBool()) ||
                     (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Madmate) && Options.ImpKnowWhosMadmate.GetBool()) ||
@@ -1213,6 +1218,7 @@ public static class Utils
                     (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                     (Totocalcio.KnowRole(seer, target)) ||
                     (Succubus.KnowRole(seer, target)) ||
+                    (Amor.KnowRole(seer, target)) ||
                     (seer.Is(CustomRoles.God)) ||
                     (target.Is(CustomRoles.GM))
                     ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";
@@ -1225,6 +1231,10 @@ public static class Utils
                     TargetMark.Append(EvilTracker.GetTargetMark(seer, target));
                     if (isForMeeting && EvilTracker.IsTrackTarget(seer, target) && EvilTracker.CanSeeLastRoomInMeeting)
                         TargetRoleText = $"<size={fontSize}>{EvilTracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";
+                }
+                if (seer.Is(CustomRoles.Amor))
+                {
+                    TargetMark.Append(Amor.GetLoversMark(seer, target));
                 }
 
                 //RealNameを取得 なければ現在の名前をRealNamesに書き込む
@@ -1377,7 +1387,7 @@ public static class Utils
         FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting, true);
 
         Jackal.AfterPlayerDiedTask(target);
-
+        Amor.CheckLoversSuicide(target.PlayerId, onMeeting);
     }
     public static void ChangeInt(ref int ChangeTo, int input, int max)
     {

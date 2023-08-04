@@ -8,6 +8,7 @@ using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
+using static UnityEngine.ParticleSystem.PlaybackState;
 
 namespace TOHE;
 
@@ -414,6 +415,8 @@ class CheckForEndVotingPatch
             //Loversの後追い
             if (CustomRoles.Lovers.IsEnable() && !Main.isLoversDead && Main.LoversPlayers.Find(lp => lp.PlayerId == playerId) != null)
                 FixedUpdatePatch.LoversSuicide(playerId, true);
+            if (CustomRoles.Amor.IsEnable() && Amor.Lovers.Any(lp => lp.PlayerId == playerId))
+                Amor.CheckLoversSuicide(playerId, true);
             //道連れチェック
             RevengeOnExile(playerId, deathReason);
         }
@@ -617,7 +620,7 @@ class MeetingHudStartPatch
             roleTextMeeting.enabled =
                 pc.AmOwner || //対象がLocalPlayer
                 (Main.VisibleTasksCount && PlayerControl.LocalPlayer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) || //LocalPlayerが死亡していて幽霊が他人の役職を見れるとき
-                (pc.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool()) ||
+                (pc.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool() && Amor.IsLoverPair(pc, PlayerControl.LocalPlayer))||
                 (pc.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) ||
                 (pc.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosImp.GetBool()) ||
                 (pc.Is(CustomRoles.Madmate) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowWhosMadmate.GetBool()) ||
@@ -627,6 +630,7 @@ class MeetingHudStartPatch
                 (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.God) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.GM) ||
+                (Amor.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 Main.GodMode.Value;
             if (EvilTracker.IsTrackTarget(PlayerControl.LocalPlayer, pc) && EvilTracker.CanSeeLastRoomInMeeting)
             {
@@ -751,9 +755,8 @@ class MeetingHudStartPatch
                     if (seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Retributionist), target.PlayerId.ToString()) + " " + pva.NameText.text;
                     break;
-                case CustomRoles.Doomsayer:
-                    if (!seer.Data.IsDead && !target.Data.IsDead)
-                        pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doomsayer), target.PlayerId.ToString()) + " " + pva.NameText.text;
+                case CustomRoles.Amor:
+                    sb.Append(Amor.GetLoversMark(seer, target));
                     break;
             }
 
@@ -763,7 +766,7 @@ class MeetingHudStartPatch
                 switch (subRole)
                 {
                     case CustomRoles.Lovers:
-                        if (seer.Is(CustomRoles.Lovers) || seer.Data.IsDead)
+                        if ((seer.Is(CustomRoles.Lovers) && Amor.IsLoverPair(seer, target)) || seer.Data.IsDead)
                         {
                             sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
                             isLover = true;

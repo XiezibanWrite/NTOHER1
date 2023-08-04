@@ -93,10 +93,10 @@ internal static class CustomRolesHelper
                 CustomRoles.Councillor => CustomRoles.Impostor,
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
                 CustomRoles.TimeMaster => CustomRoles.Engineer,
-                CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 CustomRoles.Deathpact => CustomRoles.Shapeshifter,
                 CustomRoles.Deputy => CustomRoles.Crewmate,
                 CustomRoles.NWitch => CustomRoles.Impostor,
+                CustomRoles.Amor => CustomRoles.Amor,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -126,6 +126,7 @@ internal static class CustomRolesHelper
             CustomRoles.Deputy => RoleTypes.Impostor,
             CustomRoles.NWitch => RoleTypes.Impostor,
             CustomRoles.Pirate => RoleTypes.Impostor,
+            CustomRoles.Amor => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
@@ -169,7 +170,6 @@ internal static class CustomRolesHelper
             CustomRoles.DarkHide or
             CustomRoles.Provocateur or
             CustomRoles.Lawyer or
-            CustomRoles.Doomsayer or
             CustomRoles.Deputy or
             CustomRoles.NWitch or
             CustomRoles.Pirate or
@@ -194,7 +194,6 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Succubus or
             CustomRoles.Vulture or
-            CustomRoles.Doomsayer or
             CustomRoles.NWitch or
             CustomRoles.Pirate or
             CustomRoles.Lawyer;
@@ -254,6 +253,7 @@ internal static class CustomRolesHelper
             CustomRoles.Councillor or
             CustomRoles.Deathpact or
             CustomRoles.NWitch or
+            CustomRoles.Amor or
             CustomRoles.Crewpostor;     
     }
     public static bool IsNeutral(this CustomRoles role) // �Ƿ�����
@@ -286,7 +286,6 @@ internal static class CustomRolesHelper
             CustomRoles.Totocalcio or
             CustomRoles.Lawyer or
             CustomRoles.Vulture or
-            CustomRoles.Doomsayer or
             CustomRoles.NWitch or
             CustomRoles.Pirate or
             CustomRoles.Succubus;
@@ -323,7 +322,7 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Vulture)) return false;
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Vulture)) return false;
         if (role is CustomRoles.Autopsy && (pc.Is(CustomRoles.Doctor)) || pc.Is(CustomRoles.Scientist) || pc.Is(CustomRoles.Sunnyboy) ) return false;
-        if (role is CustomRoles.EvilGuesser && (pc.Is(CustomRoles.Doomsayer))) return false;
+        if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Amor)) return false;
         return true;
     }
     public static RoleTypes GetRoleTypes(this CustomRoles role)

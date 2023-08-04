@@ -73,7 +73,7 @@ public static class CredentialsPatch
 
             SponsersData += $"罗寄";
             SponsersData += $"\n鬼";
-            SponsersData += $"\n喜";
+            SponsersData += $"\nA master";
             SponsersData += $"\n小叨院长";
             SponsersData += $"\n波奇酱";
             SponsersData += $"\n法师";

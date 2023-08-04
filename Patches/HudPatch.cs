@@ -194,6 +194,9 @@ class HudManagerPatch
                     case CustomRoles.Totocalcio:
                         __instance.KillButton.OverrideText(GetString("TotocalcioKillButtonText"));
                         break;
+                    case CustomRoles.Pirate:
+                        __instance.KillButton.OverrideText(GetString("PirateKillButtonText"));
+                        break;
                     case CustomRoles.Succubus:
                         __instance.KillButton.OverrideText(GetString("SuccubusKillButtonText"));
                         break;
@@ -217,6 +220,9 @@ class HudManagerPatch
                         break;
                     case CustomRoles.NWitch:
                         __instance.KillButton.OverrideText($"{GetString("WitchControlButtonText")}");
+                        break;
+                    case CustomRoles.Amor:
+                        __instance.KillButton.OverrideText(GetString("AmorKillButtonText"));
                         break;
                 }
 

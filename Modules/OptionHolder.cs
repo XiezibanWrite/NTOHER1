@@ -725,7 +725,6 @@ public static class Options
         Lawyer.SetupCustomOption();
         Succubus.SetupCustomOption();
         Vulture.SetupCustomOption();
-        Doomsayer.SetupCustomOption();
 
         // Add-Ons
         SetupLoversRoleOptionsToggle(50300);
@@ -782,6 +781,7 @@ public static class Options
         TicketsPerKill = FloatOptionItem.Create(6051666, "TicketsPerKill", new(0.1f, 10f, 0.1f), 0.5f, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.TicketsStealer]);
         SetupAdtRoleOptions(6051677, CustomRoles.Mimic, canSetNum: true, tab: TabGroup.Addons);
         RetributionistCanBeMadmate = BooleanOptionItem.Create(15817, "RetributionistCanBeMadmate", false, TabGroup.Addons, false);
+        Amor.SetupCustomOption();
 
         // 乐子职业
 

@@ -207,11 +207,11 @@ internal class ChangeRoleSettings
             Lawyer.Init();
             Vulture.Init();
             Oracle.Init();
-            Doomsayer.Init();
             Deathpact.Init();
             NWitch.Init();
             SoloKombatManager.Init();
             Pirate.Init();
+            Amor.Init();
             CustomWinnerHolder.Reset();
             AntiBlackout.Reset();
             NameNotifyManager.Reset();
@@ -567,9 +567,6 @@ internal class SelectRolesPatch
                     case CustomRoles.TimeMaster:
                         Main.TimeMasterNum[pc.PlayerId] = 0;
                         break;
-                    case CustomRoles.Doomsayer:
-                        Doomsayer.Add(pc.PlayerId);
-                        break;
                     case CustomRoles.Deathpact:
                         Deathpact.Add(pc.PlayerId);
                         break;
@@ -578,6 +575,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Pirate:
                         Pirate.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Amor:
+                        Amor.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())

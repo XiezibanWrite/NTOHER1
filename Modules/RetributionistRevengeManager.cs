@@ -93,12 +93,6 @@ public static class RetributionistRevengeManager
             else pc.ShowPopUp(GetString("RetributionistKillDead"));
             return true;
         }
-        if (target.Is(CustomRoles.Pestilence))
-        {
-            if (!isUI) Utils.SendMessage(GetString("PestilenceImmune"), pc.PlayerId);
-            else pc.ShowPopUp(GetString("PestilenceImmune"));
-            return true;
-        }
 
         Logger.Info($"{pc.GetNameWithRole()} 复仇了 {target.GetNameWithRole()}", "Retributionist");
 
