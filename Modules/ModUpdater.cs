@@ -45,10 +45,10 @@ public class ModUpdater
     public static GenericPopup InfoPopup;
     public static int visit = 0;
 
-    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPrefix]
-    [HarmonyPriority(2)]
-    public static void Start_Prefix(MainMenuManager __instance)
-    {
+    //[HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPrefix]
+    //[HarmonyPriority(2)]
+    //public static void Start_Prefix(MainMenuManager __instance)
+    //{
         //ewVersionCheck();
         //DeleteOldFiles();
         //InfoPopup = UnityEngine.Object.Instantiate(Twitch.TwitchManager.Instance.TwitchPopup);
@@ -80,7 +80,7 @@ public class ModUpdater
         //        .GetChild(0).GetComponent<TMPro.TMP_Text>()
         //        .SetText($"{GetString("updateButton")}\n{latestTitle}");
         //})));
-    }
+    //}
 
     public static string UrlSetId(string url) => url + "?id=6C5A46D1420E476ABD560271FC8040D7";
     public static string UrlSetCheck(string url) => url + "/checkVersion";
@@ -347,8 +347,8 @@ public class ModUpdater
             {
                 File.Delete(savePath);
                 ShowPopup(GetString("downloadFailed"), StringNames.Okay, true, false);
-                MainMenuManagerPatch.updateButton.SetActive(true);
-                MainMenuManagerPatch.updateButton.transform.position = MainMenuManagerPatch.template.transform.position + new Vector3(0.25f, 0.75f);
+                //MainMenuManagerPatch.updateButton.SetActive(true);
+                //MainMenuManagerPatch.updateButton.transform.position = MainMenuManagerPatch.template.transform.position + new Vector3(0.25f, 0.75f);
             }
             else
             {
