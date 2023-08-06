@@ -112,25 +112,11 @@ public class ModNewsHistory
     [HarmonyPatch(typeof(PlayerAnnouncementData), nameof(PlayerAnnouncementData.SetAnnouncements)), HarmonyPrefix]
     public static bool SetModAnnouncements(PlayerAnnouncementData __instance, [HarmonyArgument(0)] ref Il2CppReferenceArray<Announcement> aRange)
     {
-        if (AllModNews.Count < 1)
-        {
-            Init();
-            AllModNews.Sort((a1, a2) => { return DateTime.Compare(DateTime.Parse(a2.Date), DateTime.Parse(a1.Date)); });
-        }
-
-        List<Announcement> FinalAllNews = new();
-        AllModNews.Do(n => FinalAllNews.Add(n.ToAnnouncement()));
-        foreach (var news in aRange)
-        {
-            if (!AllModNews.Any(x => x.Number == news.Number))
-                FinalAllNews.Add(news);
-        }
-        FinalAllNews.Sort((a1, a2) => { return DateTime.Compare(DateTime.Parse(a2.Date), DateTime.Parse(a1.Date)); });
-
-        aRange = new(FinalAllNews.Count);
-        for (int i = 0; i < FinalAllNews.Count; i++)
-            aRange[i] = FinalAllNews[i];
-
+        List<Announcement> list = new();
+        list.AddRange(aRange);
+        AllModNews.Do(n => list.Add(n.ToAnnouncement()));
+        list.Sort((a1, a2) => { return DateTime.Compare(DateTime.Parse(a2.Date), DateTime.Parse(a1.Date)); });        
+        aRange = list.ToArray();
         return true;
     }
 }

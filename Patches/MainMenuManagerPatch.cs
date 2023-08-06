@@ -22,7 +22,7 @@ namespace TOHE;
 [HarmonyPatch]
 public class MainMenuManagerPatch
 {
-    public static GameObject template;
+    /*public static GameObject template;
     public static GameObject qqButton;
     public static GameObject discordButton;
     public static GameObject updateButton;
@@ -151,7 +151,7 @@ public class MainMenuManagerPatch
         }));
 
         Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
-    }
+    }*/
 }
 
 // 来源：https://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/HorseModePatch.cs
@@ -162,16 +162,6 @@ public static class HorseModePatch
     public static bool Prefix(ref bool __result)
     {
         __result = isHorseMode;
-        return false;
-    }
-}
-[HarmonyPatch(typeof(Constants), nameof(Constants.ShouldFlipSkeld))]
-public static class DleksPatch
-{
-    public static bool isDleks = false;
-    public static bool Prefix(ref bool __result)
-    {
-        __result = isDleks;
         return false;
     }
 }

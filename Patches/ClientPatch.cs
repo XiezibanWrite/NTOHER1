@@ -113,7 +113,7 @@ internal class KickPlayerPatch
         return true;
     }
 }
-[HarmonyPatch(typeof(ResolutionManager), nameof(ResolutionManager.SetResolution))]
+/*[HarmonyPatch(typeof(ResolutionManager), nameof(ResolutionManager.SetResolution))]
 internal class SetResolutionManager
 {
     public static void Postfix()
@@ -135,4 +135,4 @@ internal class InnerNetObjectSerializePatch
         if (AmongUsClient.Instance.AmHost)
             GameOptionsSender.SendAllGameOptions();
     }
-}
+}*/
