@@ -3,10 +3,10 @@ using HarmonyLib;
 
 namespace TOHE;
 
-// ²Î¿¼£ºhttps://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/SNROnlySearch.cs
+// ï¿½Î¿ï¿½ï¿½ï¿½https://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/SNROnlySearch.cs
 public static class TOHEOnlySearch
 {
-    public const string FilterText = "NTOHER";
+    public const string FilterText = "TOHE";
     [HarmonyPatch(typeof(FilterTagManager), nameof(FilterTagManager.RefreshTags))]
     public static class FilterTagManagerPatch
     {

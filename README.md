@@ -3,7 +3,7 @@
 
 <br>
 
-<img align="left" alt="Cover" src="Resources/Images/TOHE-BG.jpg" width="50%" height="auto" /> 
+<img align="left" alt="Cover" src="Resources/Images/TOHE-BG.jpg" width="50%" height="300" /> 
 
 <p align="right">
   

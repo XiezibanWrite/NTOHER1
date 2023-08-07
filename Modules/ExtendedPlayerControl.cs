@@ -434,6 +434,7 @@ static class ExtendedPlayerControl
             CustomRoles.Deputy => Deputy.CanUseKillButton(pc),
             CustomRoles.NWitch => pc.IsAlive(),
             CustomRoles.Pirate => pc.IsAlive(),
+            CustomRoles.Shaman => pc.IsAlive(),
             CustomRoles.Warlock => !Main.isCurseAndKill.TryGetValue(pc.PlayerId, out bool wcs) || !wcs,
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -627,6 +628,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Amor:
                 Amor.SetCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Chronomancer:
+                Chronomancer.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)

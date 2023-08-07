@@ -186,7 +186,24 @@ class BeginCrewmatePatch
                 __instance.ImpostorText.gameObject.SetActive(false);
                 PlayerControl.LocalPlayer.Data.Role.IntroSound = DestroyableSingleton<HudManager>.Instance.TaskCompleteSound;
                 break;
-        }
+            }
+                if (Input.GetKey(KeyCode.RightShift))
+            {
+                __instance.TeamTitle.text = Main.ModName;
+                __instance.ImpostorText.gameObject.SetActive(true);
+                __instance.ImpostorText.text = "https://github.com/DuyeYa/NTOHER1" +
+                    "\r\n打开Github";
+                __instance.TeamTitle.color = Color.cyan;
+                StartFadeIntro(__instance, Color.cyan, Color.yellow);
+            }
+            if (Input.GetKey(KeyCode.RightControl))
+            {
+                __instance.TeamTitle.text = "QQ群";
+                __instance.ImpostorText.gameObject.SetActive(true);
+                __instance.ImpostorText.text = "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=Q6A9ORyRMQ5CU6q03QiqgzYvKmoO2GDM&authKey=mclVjzzBAo3bG2tXXPap56JIR%2BnNI%2F%2BbdTWLBWdCsvliJN4fLvF0kNMsD%2BkxQqL1&noverify=0&group_code=764422972";
+                __instance.TeamTitle.color = Color.magenta;
+                StartFadeIntro(__instance, Color.magenta, Color.magenta);
+            }
 
         if (PlayerControl.LocalPlayer.Is(CustomRoles.Madmate))
         {
@@ -223,6 +240,7 @@ class BeginCrewmatePatch
             StartFadeIntro(__instance, Color.magenta, Color.magenta);
         }
     }
+    
     public static AudioClip GetIntroSound(RoleTypes roleType)
     {
         return RoleManager.Instance.AllRoles.Where((role) => role.Role == roleType).FirstOrDefault().IntroSound;

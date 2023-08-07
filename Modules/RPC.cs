@@ -810,6 +810,12 @@ internal static class RPC
             case CustomRoles.Amor:
                 Amor.Add(targetId);
                 break;
+            case CustomRoles.Merchant:
+                Merchant.Add(targetId);
+                break;            
+            case CustomRoles.Chronomancer:
+                Chronomancer.Add(targetId);
+                break;
         }
         HudManager.Instance.SetHudActive(true);
         if (PlayerControl.LocalPlayer.PlayerId == targetId) RemoveDisableDevicesPatch.UpdateDisableDevices();

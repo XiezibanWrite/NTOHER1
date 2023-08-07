@@ -228,17 +228,17 @@ public class ModUpdater
                 JArray assets = data["assets"].Cast<JArray>();
                 for (int i = 0; i < assets.Count; i++)
                 {
-                    if (assets[i]["name"].ToString() == "NTOHER_Steam.dll" && Constants.GetPlatformType() == Platforms.StandaloneSteamPC)
+                    if (assets[i]["name"].ToString() == "TOHE_Steam.dll" && Constants.GetPlatformType() == Platforms.StandaloneSteamPC)
                     {
                         downloadUrl = assets[i]["browser_download_url"].ToString();
                         break;
                     }
-                    if (assets[i]["name"].ToString() == "NTOHER_Epic.dll" && Constants.GetPlatformType() == Platforms.StandaloneEpicPC)
+                    if (assets[i]["name"].ToString() == "TOHE_Epic.dll" && Constants.GetPlatformType() == Platforms.StandaloneEpicPC)
                     {
                         downloadUrl = assets[i]["browser_download_url"].ToString();
                         break;
                     }
-                    if (assets[i]["name"].ToString() == "NTOHER.dll")
+                    if (assets[i]["name"].ToString() == "TOHE.dll")
                         downloadUrl = assets[i]["browser_download_url"].ToString();
                 }
                 hasUpdate = latestVersion.CompareTo(Main.version) > 0;
@@ -316,7 +316,7 @@ public class ModUpdater
             foreach (var path in Directory.EnumerateFiles(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "*.*"))
             {
                 if (path.EndsWith(Path.GetFileName(Assembly.GetExecutingAssembly().Location))) continue;
-                if (path.EndsWith("NTOHER.dll")) continue;
+                if (path.EndsWith("TOHE.dll")) continue;
                 Logger.Info($"{Path.GetFileName(path)} 已删除", "DeleteOldFiles");
                 File.Delete(path);
             }
@@ -354,7 +354,7 @@ public class ModUpdater
             {
                 var fileName = Assembly.GetExecutingAssembly().Location;
                 File.Move(fileName, fileName + ".bak");
-                File.Move("BepInEx/plugins/NTOHER.dll.temp", fileName);
+                File.Move("BepInEx/plugins/TOHE.dll.temp", fileName);
                 ShowPopup(GetString("updateRestart"), StringNames.ExitGame, true, true);
             }
         }

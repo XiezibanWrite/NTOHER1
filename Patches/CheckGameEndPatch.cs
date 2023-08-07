@@ -144,6 +144,11 @@ class GameEndChecker
                     {
                         CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
                         CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Opportunist);
+                    if (pc.Is(CustomRoles.Shaman) && pc.IsAlive())
+                    {
+                        CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
+                        CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Shaman);
+                    }
                     }
                     //Sunnyboy
                     if (pc.Is(CustomRoles.Sunnyboy) && !pc.IsAlive())

@@ -375,6 +375,7 @@ public static class Utils
             case CustomRoles.SwordsMan:
             case CustomRoles.Innocent:
             case CustomRoles.Pelican:
+            case CustomRoles.Shaman:
             case CustomRoles.Revolutionist:
             case CustomRoles.FFF:
             case CustomRoles.Gamer:
@@ -961,7 +962,7 @@ public static class Utils
             else
                 name = Options.GetSuffixMode() switch
                 {
-                    SuffixModes.TOHE => name += $"\r\n<color={Main.ModColor}>NTOHER v{Main.PluginVersion}</color>",
+                    SuffixModes.TOHE => name += $"\r\n<color={Main.ModColor}>TOHE v{Main.PluginVersion}</color>",
                     SuffixModes.Streaming => name += $"\r\n<size=1.7><color={Main.ModColor}>{GetString("SuffixMode.Streaming")}</color></size>",
                     SuffixModes.Recording => name += $"\r\n<size=1.7><color={Main.ModColor}>{GetString("SuffixMode.Recording")}</color></size>",
                     SuffixModes.RoomHost => name += $"\r\n<size=1.7><color={Main.ModColor}>{GetString("SuffixMode.RoomHost")}</color></size>",
@@ -1100,7 +1101,21 @@ public static class Utils
 
             if (!isForMeeting && MeetingStates.FirstMeeting && Options.ChangeNameToRoleInfo.GetBool())
                 SeerRealName = seer.GetRoleInfo();
-
+            if (seer.GetCustomRole().IsCrewmate() && !seer.Is(CustomRoles.Madmate))
+            {
+                if (!isForMeeting && MeetingStates.FirstMeeting && Options.ChangeNameToRoleInfo.GetBool())
+                SeerRealName = $"<size=110%><color=#8cffff>" + GetString("YouAreCrewmate") + $"</color></size>\n" + seer.GetRoleInfo();
+            }
+            if (seer.GetCustomRole().IsImpostor())
+            {
+                if (!isForMeeting && MeetingStates.FirstMeeting && Options.ChangeNameToRoleInfo.GetBool())
+                SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreImpostor") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+            }
+            if (seer.Is(CustomRoles.Madmate))
+            {
+                if (!isForMeeting && MeetingStates.FirstMeeting && Options.ChangeNameToRoleInfo.GetBool())
+                SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreMadmate") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+            }
             //seerの役職名とSelfTaskTextとseerのプレイヤー名とSelfMarkを合成
             string SelfRoleName = $"<size={fontSize}>{seer.GetDisplayRoleName()}{SelfTaskText}</size>";
             string SelfDeathReason = seer.KnowDeathReason(seer) ? $"({ColorString(GetRoleColor(CustomRoles.Doctor), GetVitalText(seer.PlayerId))})" : "";
@@ -1334,6 +1349,8 @@ public static class Utils
         SerialKiller.AfterMeetingTasks();
         Vulture.AfterMeetingTasks();
         Pirate.AfterMeetingTask();
+        Chronomancer.AfterMeetingTask();
+        Main.ShamanTarget = byte.MaxValue;
         if (Options.AirShipVariableElectrical.GetBool())
             AirShipElectricalDoors.Initialize();
     }
@@ -1439,7 +1456,7 @@ public static class Utils
     {
         string f = $"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/TOHE-logs/";
         string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
-        string filename = $"{f}NTOHER-v{Main.PluginVersion}-{t}.log";
+        string filename = $"{f}TOHE-v{Main.PluginVersion}-{t}.log";
         if (!Directory.Exists(f)) Directory.CreateDirectory(f);
         FileInfo file = new(@$"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
         file.CopyTo(@filename);
