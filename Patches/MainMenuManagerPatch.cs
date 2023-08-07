@@ -20,9 +20,9 @@ using Object = UnityEngine.Object;
 namespace TOHE;
 
 [HarmonyPatch]
-public class MainMenuManagerPatch
+/*public class MainMenuManagerPatch
 {
-    /*public static GameObject template;
+    public static GameObject template;
     public static GameObject qqButton;
     public static GameObject discordButton;
     public static GameObject updateButton;
@@ -151,8 +151,8 @@ public class MainMenuManagerPatch
         }));
 
         Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
-    }*/
-}
+    }
+}*/
 
 // 来源：https://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/HorseModePatch.cs
 [HarmonyPatch(typeof(Constants), nameof(Constants.ShouldHorseAround))]

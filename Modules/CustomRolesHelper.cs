@@ -96,7 +96,9 @@ internal static class CustomRolesHelper
                 CustomRoles.Deathpact => CustomRoles.Shapeshifter,
                 CustomRoles.Deputy => CustomRoles.Crewmate,
                 CustomRoles.NWitch => CustomRoles.Impostor,
-                CustomRoles.Amor => CustomRoles.Amor,
+                CustomRoles.Amor => CustomRoles.Impostor,
+                CustomRoles.Merchant => CustomRoles.Crewmate,
+                CustomRoles.Chronomancer => CustomRoles.Impostor,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -127,6 +129,7 @@ internal static class CustomRolesHelper
             CustomRoles.NWitch => RoleTypes.Impostor,
             CustomRoles.Pirate => RoleTypes.Impostor,
             CustomRoles.Amor => RoleTypes.Impostor,
+            CustomRoles.Shaman => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
@@ -196,6 +199,7 @@ internal static class CustomRolesHelper
             CustomRoles.Vulture or
             CustomRoles.NWitch or
             CustomRoles.Pirate or
+            CustomRoles.Shaman or
             CustomRoles.Lawyer;
     }
     public static bool IsCK(this CustomRoles role) // �Ƿ������Ա
@@ -254,6 +258,7 @@ internal static class CustomRolesHelper
             CustomRoles.Deathpact or
             CustomRoles.NWitch or
             CustomRoles.Amor or
+            CustomRoles.Shaman or
             CustomRoles.Crewpostor;     
     }
     public static bool IsNeutral(this CustomRoles role) // �Ƿ�����

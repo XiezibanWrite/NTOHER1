@@ -16,23 +16,23 @@ public static class Councillor
     private static readonly int Id = 900;
     private static List<byte> playerIdList = new();
     private static OptionItem MurderLimitPerMeeting;
-  //  private static OptionItem MurderLimitPerGame;
+    //  private static OptionItem MurderLimitPerGame;
     private static OptionItem TryHideMsg;
     private static OptionItem CanMurderMadmate;
     private static OptionItem CanMurderImpostor;
     public static OptionItem KillCooldown;
     private static Dictionary<byte, int> MurderLimit;
-   // private static Dictionary<byte, int> MurderLimitGame;
+    // private static Dictionary<byte, int> MurderLimitGame;
 
     public static void SetupCustomOption()
     {
         Options.SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Councillor);
-            KillCooldown = FloatOptionItem.Create(Id + 15, "KillCooldown", new(0f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Councillor])
-                .SetValueFormat(OptionFormat.Seconds);
+        KillCooldown = FloatOptionItem.Create(Id + 15, "KillCooldown", new(0f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Councillor])
+            .SetValueFormat(OptionFormat.Seconds);
         MurderLimitPerMeeting = IntegerOptionItem.Create(Id + 10, "MurderLimitPerMeeting", new(1, 99, 1), 1, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Councillor])
             .SetValueFormat(OptionFormat.Times);
-     //   MurderLimitPerGame = IntegerOptionItem.Create(Id + 13, "MurderLimitPerGame", new(1, 99, 1), 2, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Councillor])
-       //     .SetValueFormat(OptionFormat.Times);
+        //   MurderLimitPerGame = IntegerOptionItem.Create(Id + 13, "MurderLimitPerGame", new(1, 99, 1), 2, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Councillor])
+        //     .SetValueFormat(OptionFormat.Times);
         CanMurderMadmate = BooleanOptionItem.Create(Id + 12, "CouncillorCanMurderMadmate", true, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Councillor]);
         CanMurderImpostor = BooleanOptionItem.Create(Id + 16, "CouncillorCanMurderImpostor", true, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Councillor]);
         TryHideMsg = BooleanOptionItem.Create(Id + 11, "CouncillorTryHideMsg", true, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Councillor])
@@ -42,13 +42,13 @@ public static class Councillor
     {
         playerIdList = new();
         MurderLimit = new();
-      //  MurderLimitGame = new();
+        //  MurderLimitGame = new();
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         MurderLimit.Add(playerId, MurderLimitPerMeeting.GetInt());
-     //   MurderLimitGame.Add(playerId, MurderLimitPerGame.GetInt());
+        //   MurderLimitGame.Add(playerId, MurderLimitPerGame.GetInt());
     }
     public static bool IsEnable => playerIdList.Count > 0;
     public static void OnReportDeadBody()
@@ -113,9 +113,10 @@ public static class Councillor
                 else if (target.Is(CustomRoles.Crewpostor) && CanMurderMadmate.GetBool()) CouncillorSuicide = false;
                 else if (target.Is(CustomRoles.SuperStar)) CouncillorSuicide = true;
                 else if (target.Is(CustomRoles.Snitch) && target.AllTasksCompleted()) CouncillorSuicide = true;
-                else if ((target.GetCustomRole().IsImpostor()) && CanMurderImpostor.GetBool()) CouncillorSuicide = false;
+                else if (target.GetCustomRole().IsImpostor() && CanMurderImpostor.GetBool()) CouncillorSuicide = false;
                 else if (target.GetCustomRole().IsCrewmate()) CouncillorSuicide = false;
                 else if (target.GetCustomRole().IsNeutral()) CouncillorSuicide = false;
+                else if (target.Is(CustomRoles.Merchant) && Merchant.IsBribedKiller(pc, target)) CouncillorSuicide = true;
                 else CouncillorSuicide = true;
 
                 var dp = CouncillorSuicide ? pc : target;
@@ -181,9 +182,9 @@ public static class Councillor
         return true;
     }
     public static void SetKillCooldown(byte id)
-        {
-            Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
-        }
+    {
+        Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
+    }
 
     public static bool CheckCommond(ref string msg, string command, bool exact = true)
     {

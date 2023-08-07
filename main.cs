@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "";
     public const string PluginGuid = "com.DuyeYa.NewtownofhosteditedRoles";
-    public const string PluginVersion = "1.1.5";
+    public const string PluginVersion = "1.1.7";
     public const int PluginCreate = 5;
 
     public static readonly bool ShowQQButton = true;
@@ -169,6 +169,7 @@ public class Main : BasePlugin
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
     public static Dictionary<byte, int> RetributionistRevenged = new();
+    public static byte ShamanTarget = byte.MaxValue;
 
     public static IEnumerable<PlayerControl> AllPlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null);
     public static IEnumerable<PlayerControl> AllAlivePlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null && p.IsAlive() && !p.Data.Disconnected && !Pelican.IsEaten(p.PlayerId));
@@ -296,7 +297,8 @@ public class Main : BasePlugin
                 {CustomRoles.Oracle, "#6666FF"},
                 {CustomRoles.Retributionist, "#228B22"},
                 {CustomRoles.TimeMaster, "#44baff"},
-                {CustomRoles.Deputy, "#df9026"},
+                {CustomRoles.Deputy, "#ffff66"},
+                {CustomRoles.Merchant, "#D27D2D"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Vulture, "#824738"},
@@ -326,6 +328,7 @@ public class Main : BasePlugin
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Pirate,"#EDC240"},
                 {CustomRoles.Amor, "#ee3377"},
+                {CustomRoles.Shaman, "#50c878"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -469,6 +472,8 @@ public enum CustomRoles
     Crewpostor,
     Councillor,
     Deathpact,
+    Merchant,
+    Chronomancer,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,
@@ -537,6 +542,7 @@ public enum CustomRoles
     NWitch,
     Pirate,
     Amor,
+    Shaman,
 
     //SoloKombat
     KB_Normal,
@@ -617,8 +623,8 @@ public enum AdditionalWinners
     Lawyer = CustomRoles.Lawyer,
     Witch = CustomRoles.NWitch,
     Pirate = CustomRoles.Pirate,
-    Amor = CustomRoles.Amor
-
+    Amor = CustomRoles.Amor,
+    Shaman = CustomRoles.Shaman,
 }
 public enum SuffixModes
 {

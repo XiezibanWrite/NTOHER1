@@ -106,6 +106,7 @@ internal class ChangeRoleSettings
             Main.currentDousingTarget = byte.MaxValue;
             Main.currentDrawTarget = byte.MaxValue;
             Main.PlayerColors = new();
+            Main.ShamanTarget = byte.MaxValue;
 
             //名前の記録
             //Main.AllPlayerNames = new();
@@ -212,6 +213,8 @@ internal class ChangeRoleSettings
             SoloKombatManager.Init();
             Pirate.Init();
             Amor.Init();
+            Merchant.Init();
+            Chronomancer.Init();
             CustomWinnerHolder.Reset();
             AntiBlackout.Reset();
             NameNotifyManager.Reset();
@@ -579,6 +582,12 @@ internal class SelectRolesPatch
                     case CustomRoles.Amor:
                         Amor.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Merchant:
+                        Merchant.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Chronomancer:
+                        Chronomancer.Add(pc.PlayerId);
+                        break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
                 {
@@ -629,7 +638,7 @@ internal class SelectRolesPatch
             }
 
             // ResetCamが必要なプレイヤーのリストにクラス化が済んでいない役職のプレイヤーを追加
-            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Revolutionist or CustomRoles.Crewpostor or CustomRoles.KB_Normal).Select(p => p.PlayerId));
+            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Revolutionist or CustomRoles.KB_Normal or CustomRoles.Shaman).Select(p => p.PlayerId));
             Utils.CountAlivePlayers(true);
             Utils.SyncAllSettings();
             SetColorPatch.IsAntiGlitchDisabled = false;

@@ -94,6 +94,9 @@ class CheckMurderPatch
         }
         TimeSinceLastKill[killer.PlayerId] = 0f;
 
+        if (killer.Is(CustomRoles.Chronomancer))
+            Chronomancer.OnCheckMurder(killer);
+
         killer.ResetKillCooldown();
 
         //キル可能判定
@@ -290,7 +293,15 @@ class CheckMurderPatch
                 case CustomRoles.Amor:
                     Amor.OnCheckMurder(killer, target);
                     return false;
-
+                case CustomRoles.Shaman:
+                    if (Main.ShamanTarget == byte.MaxValue)
+                    {
+                        Main.ShamanTarget = target.PlayerId;
+                        killer.RpcGuardAndKill(killer);
+                    }
+                    else killer.Notify(GetString("ShamanTargetAlreadySelected"));
+                    return false;
+                    
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:
                     if (!Sheriff.OnCheckMurder(killer, target))
@@ -332,6 +343,8 @@ class CheckMurderPatch
         // 击杀前检查
         if (!killer.RpcCheckAndMurder(target, true))
             return false;
+        
+        //キル可能判定if (Merchant.OnClientMurder(killer, target)) return false;
 
         // 清道夫清理尸体
         if (killer.Is(CustomRoles.Scavenger))

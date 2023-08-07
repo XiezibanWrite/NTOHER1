@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Hazel;
+using Rewired.UI.ControlMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,13 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Judge
 {
-    private static readonly int Id = 8035678;
+    private static readonly int Id = 9300;
     private static List<byte> playerIdList = new();
     private static OptionItem TrialLimitPerMeeting;
     private static OptionItem TryHideMsg;
     private static OptionItem CanTrialMadmate;
     private static OptionItem CanTrialCharmed;
     private static OptionItem CanTrialCrewKilling;
-    private static OptionItem CanTrialNeutralB;
     private static OptionItem CanTrialNeutralK;
     private static Dictionary<byte, int> TrialLimit;
 
@@ -30,9 +30,9 @@ public static class Judge
         CanTrialMadmate = BooleanOptionItem.Create(Id + 12, "JudgeCanTrialMadmate", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge]);
         CanTrialCharmed = BooleanOptionItem.Create(Id + 16, "JudgeCanTrialCharmed", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge]);
         CanTrialCrewKilling = BooleanOptionItem.Create(Id + 13, "JudgeCanTrialnCrewKilling", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge]);
-        CanTrialNeutralB = BooleanOptionItem.Create(Id + 14, "JudgeCanTrialNeutralB", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge]);
         CanTrialNeutralK = BooleanOptionItem.Create(Id + 15, "JudgeCanTrialNeutralK", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge]);
-        TryHideMsg = BooleanOptionItem.Create(Id + 11, "JudgeTryHideMsg", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge]);
+        TryHideMsg = BooleanOptionItem.Create(Id + 11, "JudgeTryHideMsg", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge])
+            .SetColor(Color.green);
     }
     public static void Init()
     {
@@ -104,11 +104,11 @@ public static class Judge
                     judgeSuicide = true;
                 }
                 else if (pc.Is(CustomRoles.Madmate)) judgeSuicide = false;
+                else if (pc.Is(CustomRoles.Charmed)) judgeSuicide = false;
                 else if (target.Is(CustomRoles.Madmate) && CanTrialMadmate.GetBool()) judgeSuicide = false;
                 else if (target.Is(CustomRoles.Charmed) && CanTrialCharmed.GetBool()) judgeSuicide = false;
                 else if (target.GetCustomRole().IsCK() && CanTrialCrewKilling.GetBool()) judgeSuicide = false;
                 else if (target.GetCustomRole().IsNK() && CanTrialNeutralK.GetBool()) judgeSuicide = false;
-                else if (target.GetCustomRole().IsNNK() && CanTrialNeutralB.GetBool()) judgeSuicide = false;
                 else if (target.GetCustomRole().IsImpostor()) judgeSuicide = false;
                 else judgeSuicide = true;
 
@@ -128,9 +128,9 @@ public static class Judge
                     //死者检查
                     Utils.AfterPlayerDeathTasks(dp, true);
 
-                    Utils.NotifyRoles(isForMeeting: true, NoCache: true);
+                    Utils.NotifyRoles(isForMeeting: false, NoCache: true);
 
-                    new LateTask(() => { Utils.SendMessage(string.Format(GetString("TrialKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Judge), GetString("TrialKillTitle"))); }, 0.6f, "Guess Msg");
+                    new LateTask(() => { Utils.SendMessage(string.Format(GetString("TrialKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceGuesser), GetString("TrialKillTitle"))); }, 0.6f, "Guess Msg");
 
                 }, 0.2f, "Trial Kill");
             }
@@ -234,9 +234,9 @@ public static class Judge
             GameObject template = pva.Buttons.transform.Find("CancelButton").gameObject;
             GameObject targetBox = UnityEngine.Object.Instantiate(template, pva.transform);
             targetBox.name = "ShootButton";
-            targetBox.transform.localPosition = new Vector3(-0.95f, 0.03f, -1.31f);
+            targetBox.transform.localPosition = new Vector3(-0.35f, 0.03f, -1.31f);
             SpriteRenderer renderer = targetBox.GetComponent<SpriteRenderer>();
-            renderer.sprite = CustomButton.Get("Judge");
+            renderer.sprite = CustomButton.Get("JudgeIcon");
             PassiveButton button = targetBox.GetComponent<PassiveButton>();
             button.OnClick.RemoveAllListeners();
             button.OnClick.AddListener((Action)(() => JudgeOnClick(pva.TargetPlayerId, __instance)));

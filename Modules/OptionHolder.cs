@@ -61,7 +61,10 @@ public static class Options
     public static bool IsActivePolus => AddedPolus.GetBool() || Main.NormalOptions.MapId == 2;
     public static bool IsActiveAirship => AddedTheAirShip.GetBool() || Main.NormalOptions.MapId == 4;
 
+    public static object GuesserMode { get; internal set; }
+
     // 役職数・確率
+
     public static Dictionary<CustomRoles, int> roleCounts;
     public static Dictionary<CustomRoles, float> roleSpawnChances;
     public static Dictionary<CustomRoles, OptionItem> CustomRoleCounts;
@@ -601,6 +604,7 @@ public static class Options
         Swooper.SetupCustomOption();
         Councillor.SetupCustomOption();
         Deathpact.SetupCustomOption();
+        Chronomancer.SetupCustomOption();
 
         // Crewmate
         SetupRoleOptions(102255, TabGroup.CrewmateRoles, CustomRoles.NiceGuesser);
@@ -690,6 +694,7 @@ public static class Options
         TimeMasterSkillDuration = FloatOptionItem.Create(8961, "TimeMasterSkillDuration", new(1f, 999f, 1f), 20f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.TimeMaster])
             .SetValueFormat(OptionFormat.Seconds);
+        Merchant.SetupCustomOption();
 
         // Neutral
         SetupRoleOptions(50500, TabGroup.NeutralRoles, CustomRoles.Arsonist);
@@ -808,7 +813,8 @@ public static class Options
         SetupRoleOptions(907090, TabGroup.OtherRoles, CustomRoles.Crewpostor);
         CrewpostorCanKillAllies = BooleanOptionItem.Create(907092, "CanKillAllies", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
         CrewpostorTasks = OverrideTasksData.Create(9079094, TabGroup.OtherRoles, CustomRoles.Crewpostor);
-
+        SetupRoleOptions(22420, TabGroup.NeutralRoles, CustomRoles.Shaman);
+        
         // 船员
         TextOptionItem.Create(909092, "OtherRoles.CrewmateRoles", TabGroup.OtherRoles)
             .SetGameMode(CustomGameMode.Standard)
