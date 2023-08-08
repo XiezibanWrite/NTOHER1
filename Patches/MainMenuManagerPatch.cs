@@ -150,9 +150,7 @@ namespace TOHE;
             CredentialsPatch.LogoPatch.CreditsPopup?.SetActive(true);
         }));
 
-        Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
-    }
-}*/
+        Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;*/
 
 // 来源：https://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/HorseModePatch.cs
 [HarmonyPatch(typeof(Constants), nameof(Constants.ShouldHorseAround))]
@@ -162,6 +160,16 @@ public static class HorseModePatch
     public static bool Prefix(ref bool __result)
     {
         __result = isHorseMode;
+        return false;
+    }
+}
+[HarmonyPatch(typeof(Constants), nameof(Constants.ShouldFlipSkeld))]
+public static class DleksPatch
+{
+    public static bool isDleks = false;
+    public static bool Prefix(ref bool __result)
+    {
+        __result = isDleks;
         return false;
     }
 }

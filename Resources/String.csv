@@ -1510,7 +1510,6 @@
 "RetributionistKillTooManyDead","有太多玩家死亡，您无法重试","Too many players are dead, you can't retribute.","","",""
 "MinimumPlayersAliveToRetri","阻止复仇所需的最大玩家数","Maximum players needed to block retributions","","",""
 "RetributionistRevengeTitle","【 ★ 惩罚者的复仇 ★ 】","【 ★ NEWS ★ 】","【 ★ НОВОСТИ ★ 】","【 ★ 特供情报 ★ 】",""
-"RetributionistCanBeMadmate","惩罚者可以成为<color=#ff0000>叛徒</color>",""
 
 "## 时间之主设置"
 "TimeMasterSkillDuration","<color=#44baff>时间护盾</color>的持续时间","<color=#44baff>Time Shield</color> Duration","","",""
@@ -1611,19 +1610,15 @@
 "OptionSchizo","可以出售双重人格","Can sell <color=#3a648f>Schizophrenic</color>","Может продать <color=#3a648f>Шизофреника</color>","",""
 "OptionBewilder","可以出售迷幻者","Can sell <color=#c894f5>Bewilder</color>","Может продать <color=#c894f5>Растерянного</color>","",""
 "OptionAvenger","可以出售复仇者","Can sell <color=#ffab1c>Avenger</color>","Может продать <color=#ffab1c>Мстителя</color>","",""
-"MerchantMaxSell","销售的附加职业的最大数量","Max number of Add-ons to sell","Максимальное количество Атрибутов для продажи","",""
 
-"## 教父 & 天文家 & 萨满巫师 设置"
-"Godfather","教父","","","",""
-"Chronomancer","天文家","","",""
+"## 天文家 & 萨满巫师 设置"
+"Chronomancer","<color=#ff0000>天文家</color>","","",""
 "Shaman","萨满巫师","","",""
-"GodfatherInfo","通过投票招募玩家","","",""
 "ChronomancerInfo","爆发式击杀","","",""
 "ShamanInfo",""抵挡所有对巫毒娃娃的攻击","","",""
-"GodfatherInfoLong","(内鬼阵营）：\n教父投票选举某人成为你的目标。","","",""
 "ChronomancerInfoLong","(内鬼阵营）：\n天文家可以为自己的击杀按钮充电。一旦激活，天文家就可以无限使用他们的必杀按钮，直到电量耗尽为止。
 "ShamanInfoLong","(中立阵营）：\m作为萨满巫师，你可以使用你的击杀按钮来选择一个巫毒娃娃，每回合一次。所有使用击杀按钮与你进行的互动都会被转移到巫毒娃娃身上，然后巫毒娃娃就会被摧毁。因为巫师也使用魔法，所以巫毒娃娃的效果会被抵消（不过巫毒娃娃不会被摧毁），而且会发生在萨满巫师自己身上。如果存活到最后，你就会和获胜的队伍一起获胜",",",","
-"ChronomancerKillCooldown","为夺命击杀充电的时间到了","","",""
+"ChronomancerKillCooldown","为夺命击杀充电的时间","","",""
 "ShamanTargetAlreadySelected","您已在本轮选择了一个巫毒娃娃","","",""
 
 "## 模组信息 / Mod Info"

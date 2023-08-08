@@ -18,7 +18,6 @@ public static class Gangster
     public static OptionItem JudgeCanBeMadmate;
     public static OptionItem MarshallCanBeMadmate;
     public static OptionItem FarseerCanBeMadmate;
-    public static OptionItem RetributionistCanBeMadmate;
 
     public static Dictionary<byte, int> RecruitLimit = new();
 
