@@ -13,6 +13,9 @@ public static class CredentialsPatch
 {
     public static GenericPopup popup;
 
+    public static object TohLogo { get; internal set; }
+
+
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     public static class LogoPatch
     {
