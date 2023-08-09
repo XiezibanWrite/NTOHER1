@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "";
     public const string PluginGuid = "com.DuyeYa.NewtownofhosteditedRoles";
-    public const string PluginVersion = "1.1.7";
+    public const string PluginVersion = "1.1.9";
     public const int PluginCreate = 5;
 
     public static readonly bool ShowQQButton = true;
@@ -63,6 +63,8 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> SwitchVanilla { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
+    public static ConfigEntry<bool> HorseMode { get; private set; }
+    public static ConfigEntry<bool> ShowFPS { get; private set; }
 
     public static Dictionary<byte, PlayerVersion> playerVersion = new();
     //Preset Name Options
@@ -206,6 +208,7 @@ public class Main : BasePlugin
         SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
+        HorseMode = Config.Bind("Client Options", "HorseMode", false);
 
         Logger = BepInEx.Logging.Logger.CreateLogSource("NTOHER");
         TOHE.Logger.Enable();

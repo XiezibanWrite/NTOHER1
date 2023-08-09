@@ -7,6 +7,9 @@
 "### 或许我们在未来的路上会经历许多坎坷，或许NTOHER的昙花一现就此落幕"
 "### 但感谢有你，感谢NTOHER短暂的生命中的每一位过客"
 
+"ShowFPS","显示FPS","Show FPS","Показывать FPS","",""
+"FPSGame","FPS：","FPS: ","FPS: ","",""
+
 "## 作者署名（会显示在右上角，不需要请留空） / A sign of an author (Please leave blank when not needed)"
 "TextBelowVersionText","<size=75%>感谢游玩!</size>","<size=75%>Thanks for playing!</size>","<size=75%>感谢游玩！</size>","<size=75%>Спасибо, что играете!</size>","<size=75%>感谢游玩！</size>"
 
@@ -1300,6 +1303,7 @@
 "VampireBiteButtonText","吸血","Bite","УКУСИТЬ","吸血","吸血"
 "MinerTeleButtonText","传送","TP back","ОТПРАВИТЬСЯ","傳送","传送"
 "ArsonistDouseButtonText","涂油","Douse","ОБЛИТЬ","澆油","涂油"
+"ArsonistVetnButtonText","点火","Ignite","Ignite","Ignite"
 "PuppeteerOperateButtonText","操控","Manipulate","УПРАВЛЯТЬ","操控","操控"
 "BountyHunterChangeButtonText","变更","Swap","ДО СМЕНЫ","變更","变更"
 "EvilTrackerChangeButtonText","追踪","Track","ОТСЛЕЖИВАТЬ","追蹤","追踪"
@@ -1397,6 +1401,7 @@
 "ErrorEndTextDescription","为避免卡房已强制结束","To avoid crashing, the game was forcibly ended.","Во избежание ошибки, комната была закрыта.","為避免卡房已強制結束",""
 "Loading","加载中...","<size=3.0><color=#ffbb00>Loading....\nPlease wait a bit for the menu buttons to appear.</color></size>","Загрузка...","載入中...",""
 "HidenRole","隐藏职业","Hidden Role","Скрытая Роль","隱藏職業",""
+"HorseMode","愚人节马模式","HoresMode","","",""
 
 "## 作弊 / EAC"
 "EAC.CheatDetected.HighLevel","警告：EAC正在抵御炸房外挂","Warning: EAC detected High Level of cheats.","Предупреждение: EAC обнаружил высокий уровень читов.","警告: EAC正在抵禦炸房外掛","警告：EAC正在抵御炸房外挂"
