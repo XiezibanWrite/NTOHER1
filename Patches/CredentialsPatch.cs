@@ -2,6 +2,7 @@ using HarmonyLib;
 using System.Text;
 using TMPro;
 using UnityEngine;
+
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -13,32 +14,19 @@ internal class PingTrackerUpdatePatch
 
     private static void Postfix(PingTracker __instance)
     {
-        __instance.text.alignment = TextAlignmentOptions.TopRight;
+        __instance.text.alignment = TMPro.TextAlignmentOptions.TopRight;
 
         sb.Clear();
 
         sb.Append(Main.credentialsText);
 
         var ping = AmongUsClient.Instance.Ping;
-        string pingcolor = "#ff4500";
-        if (ping < 30) pingcolor = "#44dfcc";
-        else if (ping < 50) pingcolor = "#FFD700";
-        else if (ping < 100) pingcolor = "#7bc690";
-        else if (ping < 200) pingcolor = "#f3920e";
-        else if (ping < 400) pingcolor = "#ff146e";
-
-        sb.Append($"\r\n").Append($"<size=60%><color={pingcolor}>ping: {ping} ms</color>");
-
-            if (Main.ShowFPS.Value)
-        {
-            var FPSGame = 1.0f / Time.deltaTime;
-            Color fpscolor = Color.green;
-
-            if (FPSGame < 20f) fpscolor = Color.red;
-            else if (FPSGame < 40f) fpscolor = Color.yellow;
-
-            sb.Append("\r\n").Append(Utils.ColorString(fpscolor, Utils.ColorString(Color.cyan, GetString("FPSGame")) + ((int)FPSGame).ToString()));
-        }
+        string color = "#ff4500";
+        if (ping < 30) color = "#44dfcc";
+        else if (ping < 100) color = "#7bc690";
+        else if (ping < 200) color = "#f3920e";
+        else if (ping < 400) color = "#ff146e";
+        sb.Append($"\r\n").Append($"<color={color}>Ping: {ping} ms</color>");
 
         if (Options.NoGameEnd.GetBool()) sb.Append($"\r\n").Append(Utils.ColorString(Color.red, GetString("NoGameEnd")));
         if (Options.AllowConsole.GetBool()) sb.Append($"\r\n").Append(Utils.ColorString(Color.red, GetString("AllowConsole")));
@@ -149,7 +137,6 @@ internal class TitleLogoPatch
     //public static GameObject HowToPlayButton;
     //public static GameObject FreePlayButton;
     //public static GameObject BottomButtons;
-    public static GameObject LoadingHint;
 
     private static void Postfix(MainMenuManager __instance)
     {
@@ -215,13 +202,19 @@ internal class TitleLogoPatch
 
         if ((Ambience = GameObject.Find("Ambience")) != null)
         {
-            Ambience.SetActive(false);
             var CustomBG = new GameObject("CustomBG");
             CustomBG.transform.position = new Vector3(2.095f, -0.25f, 520f);
             var bgRenderer = CustomBG.AddComponent<SpriteRenderer>();
-            CustomBG.transform.localScale = new Vector3(0.63f, 0.73f, 1);
+            CustomBG.transform.localScale = new Vector3(0.635f, 0.73f, 1);
             bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TOHE-BG.jpg", 179f);
         }
+        //From TheOtherRoles(https://github.com/TheOtherRolesAU/TheOtherRoles/blob/main/TheOtherRoles/Patches/CredentialsPatch.cs#L78)
+        var credentialObject = new GameObject("credentialsNTOHER");
+        var credentials = credentialObject.AddComponent<TextMeshPro>();
+        credentials.alignment = TMPro.TextAlignmentOptions.Center;
+        credentials.fontSize *= 0.05f;
+        credentials.SetText($"\n\n\n<b><color=#000000>{GetString("ModVersionCred")}:</color><color=#FFFF00>{Main.PluginVersion}</color>\r\n<color=#ffc0cb>TOHE</color> <color=#BA55D3>by:</color> <color=#ffc0cb>KARPED1EM</color>\r\n<color=#00BFFF>NTOHER</color> <color=#BA55D3>by:</color> <color=#87CEFA>毒液</color> <color=#BA55D3>&</color> <color=#00FFFF>LezaiYa</color>\r\n{GetString("Thanks")}");
+        credentials.transform.localPosition = new Vector3(2.095f, -0.75f, 520f);
     }
 }
             [HarmonyPatch(typeof(ModManager), nameof(ModManager.LateUpdate))]
