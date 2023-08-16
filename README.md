@@ -1,60 +1,18 @@
 
-<h1 align="center">~ TownofHost Edited ~</h1>
+<h1>NTOHER</h1>
+<details>
+<summary> 中文 | Chinese </summary>
+你好啊~这里是NTOHER！下面是一些有用的按钮，你可以点击看看！
 
-<br>
+<a href="https://github.com/DuyeYa/NTOHER/releases" target="_blank"><img src="https://img.shields.io/badge/获取新版本%20-%231DA1F2.svg?&style=for-the-badge&logo=GitHub&logoColor=white&color=000000"/></a>
+</details>
+<details>
+<summary> 英文 | English </summary>
+Hello~ This is NTOHER! Here are some useful buttons you can click to see!
 
-<img align="left" alt="Cover" src="Resources/Images/TOHE-BG.jpg" width="50%" height="300" /> 
-
-<p align="right">
-  
-> ### Regarding this mod
->
-> This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are property of Innersloth LLC. © Innersloth LLC.
->
-
-<p align="center">
-<a href="https://tohe.cc" target="_blank"><img src="https://img.shields.io/badge/Website%20-%231DA1F2.svg?&style=for-the-badge&logo=vuedotjs&logoColor=white&color=3aa675"/></a>
-<a href="https://discord.gg/hkk2p9ggv4" target="_blank"><img src="https://img.shields.io/badge/Discord%20-%231DA1F2.svg?&style=for-the-badge&logo=discord&logoColor=white&color=5662f6"/></a>
-<a href="https://github.com/KARPED1EM/TownOfHostEdited/releases/latest" target="_blank"><img src="https://img.shields.io/badge/Lateset Version%20-%231DA1F2.svg?&style=for-the-badge&logo=github&logoColor=white&color=181717"/></a>
-</p>
-
-</p>
-
----
-
-**This is a project for me to learn C#.**
-
-**So many thanks to these mods for their codes and helps:**
-
-> 
-### :star: [TOH](https://github.com/tukasa0001/TownOfHost) :
-> 
-> - Our repo is forked from TOH
-> 
-### :star: [TOHY](https://github.com/Yumenopai/TownOfHost_Y) :
-> 
-> - Many role ideas
-> - Provided role: AntiAdminer, CursedWolf, Workaholic, Greedier, DarkHide
-> - Reference: Modify game announcement
-> 
-### :star: [TOH:TOR](https://github.com/music-discussion/TownOfHost-TheOtherRoles) :
-> 
-> - Many role ideas
-> - Reference: Exile Confirm
-> - Reference: Split RPC Pack
-> 
-### :star: [SNR](https://github.com/ykundesu/SuperNewRoles) :
-> 
-> - Reference: Credentials menu
-> - Reference: Switch Horse Mode
-> - Reference: Search Mod Game
-> - Reference: Custom Button
->
-### :star: [TOP](https://github.com/tugaru1975/TownOfPlus) :
-> 
-> - Reference: Zoom
-> 
-### :star: [RHR](https://github.com/sansaaaaai/Revolutionary-host-roles) :
-> 
-> - Reference: Modify settings menu
-> 
+<a href="https://github.com/DuyeYa/NTOHER/releases" target="_blank"><img src="https://img.shields.io/badge/Releases%20-%231DA1F2.svg?&style=for-the-badge&logo=GitHub&logoColor=white&color=000000"/></a>
+</details>
+<details>
+<summary> 其他 | Other </summary>
+We are looking for translators and other mainstream languages, please forgive me!
+</details>
