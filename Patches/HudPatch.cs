@@ -16,7 +16,6 @@ class HudManagerPatch
     public static int LastCallNotifyRolesPerSecond = 0;
     public static int NowCallNotifyRolesCount = 0;
     public static int LastSetNameDesyncCount = 0;
-    public static int LastFPS = 0;
     public static int NowFrameCount = 0;
     public static float FrameRateTimer = 0.0f;
     public static TMPro.TextMeshPro LowerInfoText;
@@ -112,6 +111,9 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Innocent:
                         __instance.KillButton.OverrideText(GetString("InnocentButtonText"));
+                        break;
+                    case CustomRoles.Escapee:
+                        __instance.AbilityButton.OverrideText(GetString("EscapeeShapeshiftText"));
                         break;
                     case CustomRoles.Capitalism:
                         __instance.KillButton.OverrideText(GetString("CapitalismButtonText"));

@@ -59,11 +59,23 @@ public static class HudSpritePatch
             case CustomRoles.Bomber:
                 newAbilityButton = CustomButton.Get("Bomb");
                 break;
+            case CustomRoles.ImperiusCurse:
+                newAbilityButton = CustomButton.Get("Teleport");
+                break;
             case CustomRoles.Sniper:
                 newAbilityButton = CustomButton.Get("Rifle");
                 break;
             case CustomRoles.Concealer:
                 newAbilityButton = CustomButton.Get("Camo");
+                break;
+            case CustomRoles.Swooper:
+                newVentButton = CustomButton.Get("Swoop");
+                break;
+            case CustomRoles.SerialKiller:
+                newAbilityButton = CustomButton.Get("Suidce");
+                break;
+            case CustomRoles.Escapee:
+                newAbilityButton = CustomButton.Get("Besignated");
                 break;
             case CustomRoles.Arsonist:
                 newKillButton = CustomButton.Get("Douse");

@@ -215,6 +215,7 @@ internal class ChangeRoleSettings
             Amor.Init();
             Merchant.Init();
             Chronomancer.Init();
+            Cleanser.Init();
             CustomWinnerHolder.Reset();
             AntiBlackout.Reset();
             NameNotifyManager.Reset();
@@ -587,6 +588,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Chronomancer:
                         Chronomancer.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Cleanser:
+                        Cleanser.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())

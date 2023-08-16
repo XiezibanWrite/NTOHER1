@@ -540,6 +540,9 @@ public static class Utils
             case CustomRoles.Amor:
                 ProgressText.Append(Amor.GetMatchmakeLimit());
                 break;
+            case CustomRoles.Cleanser:
+                ProgressText.Append(Cleanser.GetProgressText(playerId));
+                break;
             default:
                 //タスクテキスト
                 var taskState = Main.PlayerStates?[playerId].GetTaskState();
@@ -962,7 +965,7 @@ public static class Utils
             else
                 name = Options.GetSuffixMode() switch
                 {
-                    SuffixModes.TOHE => name += $"\r\n<color={Main.ModColor}>TOHE v{Main.PluginVersion}</color>",
+                    SuffixModes.TOHE => name += $"\r\n<color={Main.ModColor}>NTOHER v{Main.PluginVersion}</color>",
                     SuffixModes.Streaming => name += $"\r\n<size=1.7><color={Main.ModColor}>{GetString("SuffixMode.Streaming")}</color></size>",
                     SuffixModes.Recording => name += $"\r\n<size=1.7><color={Main.ModColor}>{GetString("SuffixMode.Recording")}</color></size>",
                     SuffixModes.RoomHost => name += $"\r\n<size=1.7><color={Main.ModColor}>{GetString("SuffixMode.RoomHost")}</color></size>",
@@ -1349,6 +1352,7 @@ public static class Utils
         SerialKiller.AfterMeetingTasks();
         Vulture.AfterMeetingTasks();
         Pirate.AfterMeetingTask();
+        Cleanser.AfterMeetingTasks();
         Chronomancer.AfterMeetingTask();
         Main.ShamanTarget = byte.MaxValue;
         if (Options.AirShipVariableElectrical.GetBool())

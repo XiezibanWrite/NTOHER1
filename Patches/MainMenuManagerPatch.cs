@@ -19,8 +19,8 @@ using Object = UnityEngine.Object;
 
 namespace TOHE;
 
-[HarmonyPatch]
-/*public class MainMenuManagerPatch
+/*[HarmonyPatch]
+public class MainMenuManagerPatch
 {
     public static GameObject template;
     public static GameObject qqButton;

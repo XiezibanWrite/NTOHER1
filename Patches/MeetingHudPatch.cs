@@ -86,6 +86,9 @@ class CheckForEndVotingPatch
                             case CustomRoles.Oracle:
                                 Oracle.OnVote(pc, voteTarget);
                                 break;
+                            case CustomRoles.Cleanser:
+                                Cleanser.OnVote(pc, voteTarget);
+                                break;
                         }
                     }
                 }

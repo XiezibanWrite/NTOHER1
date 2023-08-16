@@ -6,7 +6,7 @@ namespace TOHE;
 // �ο���https://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/SNROnlySearch.cs
 public static class TOHEOnlySearch
 {
-    public const string FilterText = "TOHE";
+    public const string FilterText = "NTOHER";
     [HarmonyPatch(typeof(FilterTagManager), nameof(FilterTagManager.RefreshTags))]
     public static class FilterTagManagerPatch
     {

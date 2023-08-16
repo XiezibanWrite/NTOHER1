@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "";
     public const string PluginGuid = "com.DuyeYa.NewtownofhosteditedRoles";
-    public const string PluginVersion = "1.1.7";
+    public const string PluginVersion = "1.2.2.1";
     public const int PluginCreate = 5;
 
     public static readonly bool ShowQQButton = true;
@@ -54,7 +54,6 @@ public class Main : BasePlugin
     public static ConfigEntry<string> HideName { get; private set; }
     public static ConfigEntry<string> HideColor { get; private set; }
     public static ConfigEntry<int> MessageWait { get; private set; }
-    public static ConfigEntry<bool> UnlockFPS { get; private set; }
     public static ConfigEntry<bool> AutoStart { get; private set; }
     public static ConfigEntry<bool> ForceOwnLanguage { get; private set; }
     public static ConfigEntry<bool> ForceOwnLanguageRoleName { get; private set; }
@@ -63,7 +62,7 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> SwitchVanilla { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
-
+    public static ConfigEntry<bool> HorseMode { get; private set; }
     public static Dictionary<byte, PlayerVersion> playerVersion = new();
     //Preset Name Options
     public static ConfigEntry<string> Preset1 { get; private set; }
@@ -197,7 +196,6 @@ public class Main : BasePlugin
         HideName = Config.Bind("Client Options", "Hide Game Code Name", "NTOHER");
         HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ModColor}");
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
-        UnlockFPS = Config.Bind("Client Options", "UnlockFPS", false);
         AutoStart = Config.Bind("Client Options", "AutoStart", false);
         ForceOwnLanguage = Config.Bind("Client Options", "ForceOwnLanguage", false);
         ForceOwnLanguageRoleName = Config.Bind("Client Options", "ForceOwnLanguageRoleName", false);
@@ -206,6 +204,7 @@ public class Main : BasePlugin
         SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
+        HorseMode = Config.Bind("Client Options", "HorseMode", false);
 
         Logger = BepInEx.Logging.Logger.CreateLogSource("NTOHER");
         TOHE.Logger.Enable();
@@ -289,7 +288,7 @@ public class Main : BasePlugin
                 {CustomRoles.Medicaler, "#00a4ff"},
                 {CustomRoles.Divinator, "#882c83"},
                 {CustomRoles.Glitch, "#dcdcdc"},
-                {CustomRoles.Judge, "#00bfff"},
+                {CustomRoles.Judge, "#f8d85a"},
                 {CustomRoles.Mortician, "#333c49"},
                 {CustomRoles.Mediumshiper, "#a200ff"},
                 {CustomRoles.Observer, "#a8e0fa"},
@@ -299,6 +298,7 @@ public class Main : BasePlugin
                 {CustomRoles.TimeMaster, "#44baff"},
                 {CustomRoles.Deputy, "#ffff66"},
                 {CustomRoles.Merchant, "#D27D2D"},
+                {CustomRoles.Cleanser,"#98FF98" },
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Vulture, "#824738"},
@@ -357,6 +357,7 @@ public class Main : BasePlugin
                 {CustomRoles.Bait, "#00f7ff"},
                 {CustomRoles.Trapper, "#5a8fd0"},
                 {CustomRoles.Autopsy, "#80ffdd"},
+                {CustomRoles.Cleansed,"#98FF98"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -513,6 +514,7 @@ public enum CustomRoles
     Retributionist,
     TimeMaster,
     Deputy,
+    Cleanser,
     //Neutral
     Arsonist,
     Jester,
@@ -576,6 +578,7 @@ public enum CustomRoles
     Bait,
     Trapper,
     Autopsy,
+    Cleansed,
 }
 //WinData
 public enum CustomWinner

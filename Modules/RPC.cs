@@ -54,6 +54,7 @@ enum CustomRPC
     SetDrawPlayer,
     SetCurrentDrawTarget,
     SetGamerHealth,
+    SetCleanserCleanLimit,
     SetPelicanEtenNum,
     SwordsManKill,
     SetCounterfeiterSellLimit,
@@ -474,6 +475,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetAmorMatchmakeLimit:
                 Amor.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetCleanserCleanLimit:
+                Cleanser.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -815,6 +819,9 @@ internal static class RPC
                 break;            
             case CustomRoles.Chronomancer:
                 Chronomancer.Add(targetId);
+                break;
+            case CustomRoles.Cleanser:
+                Cleanser.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

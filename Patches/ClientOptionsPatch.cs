@@ -3,11 +3,10 @@ using UnityEngine;
 
 namespace TOHE;
 
-//À´Ô´£ºhttps://github.com/tukasa0001/TownOfHost/pull/1265
+//Ã€Â´Ã”Â´Â£Âºhttps://github.com/tukasa0001/TownOfHost/pull/1265
 [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
 public static class OptionsMenuBehaviourStartPatch
 {
-    private static ClientOptionItem UnlockFPS;
     private static ClientOptionItem AutoStart;
     private static ClientOptionItem ForceOwnLanguage;
     private static ClientOptionItem ForceOwnLanguageRoleName;
@@ -29,15 +28,6 @@ public static class OptionsMenuBehaviourStartPatch
             Main.GodMode.Value = false;
         }
 
-        if (UnlockFPS == null || UnlockFPS.ToggleButton == null)
-        {
-            UnlockFPS = ClientOptionItem.Create("UnlockFPS", Main.UnlockFPS, __instance, UnlockFPSButtonToggle);
-            static void UnlockFPSButtonToggle()
-            {
-                Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
-                Logger.SendInGame(string.Format(Translator.GetString("FPSSetTo"), Application.targetFrameRate));
-            }
-        }
         if (AutoStart == null || AutoStart.ToggleButton == null)
         {
             AutoStart = ClientOptionItem.Create("AutoStart", Main.AutoStart, __instance, AutoStartButtonToggle);

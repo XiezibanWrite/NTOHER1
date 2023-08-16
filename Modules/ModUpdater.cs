@@ -238,7 +238,7 @@ public class ModUpdater
                         downloadUrl = assets[i]["browser_download_url"].ToString();
                         break;
                     }
-                    if (assets[i]["name"].ToString() == "TOHE.dll")
+                    if (assets[i]["name"].ToString() == "NTOHER.dll")
                         downloadUrl = assets[i]["browser_download_url"].ToString();
                 }
                 hasUpdate = latestVersion.CompareTo(Main.version) > 0;

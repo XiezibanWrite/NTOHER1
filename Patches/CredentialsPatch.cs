@@ -2,6 +2,7 @@ using HarmonyLib;
 using System.Text;
 using TMPro;
 using UnityEngine;
+
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -13,7 +14,7 @@ internal class PingTrackerUpdatePatch
 
     private static void Postfix(PingTracker __instance)
     {
-        __instance.text.alignment = TextAlignmentOptions.TopRight;
+        __instance.text.alignment = TMPro.TextAlignmentOptions.TopRight;
 
         sb.Clear();
 
@@ -25,7 +26,7 @@ internal class PingTrackerUpdatePatch
         else if (ping < 100) color = "#7bc690";
         else if (ping < 200) color = "#f3920e";
         else if (ping < 400) color = "#ff146e";
-        sb.Append($"\r\n").Append($"<color={color}>延迟: {ping} 毫秒</color>");
+        sb.Append($"\r\n").Append($"<color={color}>Ping: {ping} ms</color>");
 
         if (Options.NoGameEnd.GetBool()) sb.Append($"\r\n").Append(Utils.ColorString(Color.red, GetString("NoGameEnd")));
         if (Options.AllowConsole.GetBool()) sb.Append($"\r\n").Append(Utils.ColorString(Color.red, GetString("AllowConsole")));
@@ -131,46 +132,45 @@ internal class TitleLogoPatch
 {
     public static GameObject Ambience;
     public static GameObject amongUsLogo;
-    public static GameObject PlayLocalButton;
-    public static GameObject PlayOnlineButton;
-    public static GameObject HowToPlayButton;
-    public static GameObject FreePlayButton;
-    public static GameObject BottomButtons;
-    public static GameObject LoadingHint;
+    //public static GameObject PlayLocalButton;
+    //public static GameObject PlayOnlineButton;
+    //public static GameObject HowToPlayButton;
+    //public static GameObject FreePlayButton;
+    //public static GameObject BottomButtons;
 
     private static void Postfix(MainMenuManager __instance)
     {
-        if (Main.IsAprilFools)
-        {
-            if ((amongUsLogo = GameObject.Find("bannerLogo_AmongUs")) != null)
-            {
-                amongUsLogo.transform.localScale *= 0.4f;
-                amongUsLogo.transform.position += Vector3.up * 0.25f;
-            }
+        /*if (Main.IsAprilFools)
+         {
+             if ((amongUsLogo = GameObject.Find("bannerLogo_AmongUs")) != null)
+             {
+                 amongUsLogo.transform.localScale *= 0.4f;
+                 amongUsLogo.transform.position += Vector3.up * 0.25f;
+             }
 
-            var tohLogo = new GameObject("titleLogo_TOH");
-            tohLogo.transform.position = Vector3.up;
-            tohLogo.transform.localScale *= 1.2f;
-            var renderer = tohLogo.AddComponent<SpriteRenderer>();
-            renderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TownOfHost-Logo.png", 300f);
+             /*var tohLogo = new GameObject("titleLogo_TOH");
+             tohLogo.transform.position = Vector3.up;
+             tohLogo.transform.localScale *= 1.2f;
+             var renderer = tohLogo.AddComponent<SpriteRenderer>();
+             renderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TownOfHost-Logo.png", 300f);
 
-            return;
-        }
+             return;
+         }
 
         LoadingHint = new GameObject("LoadingHint");
-        LoadingHint.transform.position = Vector3.down;
-        var LoadingHintText = LoadingHint.AddComponent<TextMeshPro>();
-        LoadingHintText.text = GetString("Loading");
-        LoadingHintText.alignment = TextAlignmentOptions.Center;
-        LoadingHintText.fontSize = 3f;
-
+         LoadingHint.transform.position = Vector3.down;
+         var LoadingHintText = LoadingHint.AddComponent<TextMeshPro>();
+         LoadingHintText.text = GetString("Loading");
+         LoadingHintText.alignment = TextAlignmentOptions.Center;
+         LoadingHintText.fontSize = 3f;
+        */
         if ((amongUsLogo = GameObject.Find("bannerLogo_AmongUs")) != null)
-        {
-            amongUsLogo.transform.localScale *= 0.4f;
-            amongUsLogo.transform.position += Vector3.up * 0.25f;
-        }
+         {
+             amongUsLogo.transform.localScale *= 0.4f;
+             amongUsLogo.transform.position += Vector3.up * 0.25f;
+         }
 
-        if ((PlayLocalButton = GameObject.Find("PlayLocalButton")) != null)
+        /* if ((PlayLocalButton = GameObject.Find("PlayLocalButton")) != null)
         {
             PlayLocalButton.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             PlayLocalButton.transform.position = new Vector3(-0.76f, -2.1f, 0f);
@@ -198,19 +198,26 @@ internal class TitleLogoPatch
         {
             BottomButtons.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
             BottomButtons.transform.position = new Vector3(0f, -2.71f, 0f);
-        }
+        }*/
 
         if ((Ambience = GameObject.Find("Ambience")) != null)
         {
-            Ambience.SetActive(false);
             var CustomBG = new GameObject("CustomBG");
-            CustomBG.transform.position = new Vector3(0, 0, 520f);
+            CustomBG.transform.position = new Vector3(2.095f, -0.25f, 520f);
             var bgRenderer = CustomBG.AddComponent<SpriteRenderer>();
+            CustomBG.transform.localScale = new Vector3(0.635f, 0.73f, 1);
             bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TOHE-BG.jpg", 179f);
         }
+        //From TheOtherRoles(https://github.com/TheOtherRolesAU/TheOtherRoles/blob/main/TheOtherRoles/Patches/CredentialsPatch.cs#L78)
+        var credentialObject = new GameObject("credentialsNTOHER");
+        var credentials = credentialObject.AddComponent<TextMeshPro>();
+        credentials.alignment = TMPro.TextAlignmentOptions.Center;
+        credentials.fontSize *= 0.05f;
+        credentials.SetText($"\n\n\n<b><color=#000000>{GetString("ModVersionCred")}:</color><color=#FFFF00>{Main.PluginVersion}</color>\r\n<color=#ffc0cb>TOHE</color> <color=#BA55D3>by:</color> <color=#ffc0cb>KARPED1EM</color>\r\n<color=#00BFFF>NTOHER</color> <color=#BA55D3>by:</color> <color=#87CEFA>毒液</color> <color=#BA55D3>&</color> <color=#00FFFF>LezaiYa</color>\r\n{GetString("Thanks")}");
+        credentials.transform.localPosition = new Vector3(2.095f, -0.75f, 520f);
     }
 }
-[HarmonyPatch(typeof(ModManager), nameof(ModManager.LateUpdate))]
+            [HarmonyPatch(typeof(ModManager), nameof(ModManager.LateUpdate))]
 internal class ModManagerLateUpdatePatch
 {
     public static void Prefix(ModManager __instance)
