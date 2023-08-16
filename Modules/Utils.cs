@@ -540,6 +540,9 @@ public static class Utils
             case CustomRoles.Amor:
                 ProgressText.Append(Amor.GetMatchmakeLimit());
                 break;
+            case CustomRoles.Cleanser:
+                ProgressText.Append(Cleanser.GetProgressText(playerId));
+                break;
             default:
                 //タスクテキスト
                 var taskState = Main.PlayerStates?[playerId].GetTaskState();
@@ -1349,6 +1352,7 @@ public static class Utils
         SerialKiller.AfterMeetingTasks();
         Vulture.AfterMeetingTasks();
         Pirate.AfterMeetingTask();
+        Cleanser.AfterMeetingTasks();
         Chronomancer.AfterMeetingTask();
         Main.ShamanTarget = byte.MaxValue;
         if (Options.AirShipVariableElectrical.GetBool())

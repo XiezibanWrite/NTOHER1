@@ -99,6 +99,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Amor => CustomRoles.Impostor,
                 CustomRoles.Merchant => CustomRoles.Crewmate,
                 CustomRoles.Chronomancer => CustomRoles.Impostor,
+                CustomRoles.Cleanser => CustomRoles.Crewmate,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }

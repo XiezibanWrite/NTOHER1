@@ -26,6 +26,13 @@ static class ExtendedPlayerControl
         }
         else if (role >= CustomRoles.NotAssigned)   //500:NoSubRole 501~:SubRole
         {
+            if (!Cleanser.CleansedCanGetAddon.GetBool() && player.Is(CustomRoles.Cleansed)) return;
+            Main.PlayerStates[player.PlayerId].SetSubRole(role);
+            //if (role == CustomRoles.Cleanser) Main.PlayerStates[player.PlayerId].SetSubRole(role, AllReplace:true);
+            //else Main.PlayerStates[player.PlayerId].SetSubRole(role);
+        }
+        else if (role >= CustomRoles.NotAssigned)   //500:NoSubRole 501~:SubRole
+        {
             Main.PlayerStates[player.PlayerId].SetSubRole(role);
         }
         if (AmongUsClient.Instance.AmHost)

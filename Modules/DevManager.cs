@@ -40,15 +40,16 @@ public static class DevManager
         DevUserList.Add(new(code: "taskunsold#2701", color: "null", tag: "<color=#426798>Tem</color><color=#f6e509>mie</color>", isUp: false, isDev: true, deBug: false, upName: null)); //Tem
         DevUserList.Add(new(code: "timedapper#9496", color: "#48FFFF", tag: "#Dev", isUp: false, isDev: true, deBug: true, upName: null)); //阿龍
         DevUserList.Add(new(code: "sofaagile#3120", color: "null", tag: "null", isUp: false, isDev: true, deBug: true, upName: null)); //天寸
+        DevUserList.Add(new(code: "farwig#2804", color: "#ffff00", tag: "贡献者", isUp: true, isDev: true, deBug: true, upName: "水木年华"));
+        DevUserList.Add(new(code: "cloakhazy#9133", color: "#FFFF00", tag: "#Dev", isUp: true, isDev: true, deBug: true, upName: "LezaiYa（乐崽呀）"));
 
         // Up
         DevUserList.Add(new(code: "truantwarm#9165", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, upName: "萧暮不姓萧"));
         DevUserList.Add(new(code: "storyeager#0815", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, upName: "航娜丽莎"));
         DevUserList.Add(new(code: "storeroan#0331", color: "#FF0066", tag: "Night_瓜", isUp: true, isDev: false, deBug: false, upName: "Night_瓜"));
-        DevUserList.Add(new(code: "teamelder#5856", color: "#1379bf", tag: "屑Slok（没信誉的鸽子）", isUp: true, isDev: false, deBug: false, upName: "Slok7565"));
-        DevUserList.Add(new(code: "farwig#2804", color: "#ffff00", tag: "贡献者", isUp: true, isDev: true, deBug: true, upName: "水木年华"));
         DevUserList.Add(new(code: "herdsiaty#9698", color: "#666666", tag: "贡献者/金主爹爹", isUp: true, isDev: true, deBug: true, upName: "屑杰鱼"));
-        DevUserList.Add(new(code: "cloakhazy#9133", color: "#FFFF00", tag: "贡献者/打包", isUp: true, isDev: true, deBug: true, upName: "LezaiYa（乐崽呀）"));
+        DevUserList.Add(new(code: "dazedkiosk#9538", color: "#00FFFF", tag: "看什么看我是头衔(doge)", isUp: true, isDev: true, deBug: true, upName: "方块"));
+        DevUserList.Add(new(code: "adoswish#5144", color: "#FF4444", tag: "看什么看我是头衔(doge)", isUp: true, isDev: true, deBug: true, upName: "太空果"));
         DevUserList.Add(new(code: "radarright#2509", color: "null", tag: "null", isUp: false, isDev: false, deBug: true, upName: null));
 
         // Sponsor
